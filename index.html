@@ -179,6 +179,26 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--line);
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    header.scrolled {
+      background: color-mix(in srgb, var(--surf) 92%, transparent);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border-bottom-color: rgba(var(--accent-rgb), 0.35);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6), 0 0 1px 1px rgba(var(--accent-rgb), 0.2);
+    }
+
+    .scroll-progress-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2), #ec4899);
+      z-index: 101;
+      transition: width 0.08s ease-out;
+      box-shadow: 0 0 10px var(--accent);
     }
 
     .navbar {
@@ -189,6 +209,11 @@
       max-width: 1400px;
       margin: 0 auto;
       width: 100%;
+      transition: padding 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    header.scrolled .navbar {
+      padding-top: 8px;
+      padding-bottom: 8px;
     }
 
     .nav-brand {
@@ -235,7 +260,7 @@
 
     .nav-links {
       display: flex;
-      gap: clamp(10px, 1.4vw, 22px);
+      gap: clamp(8px, 1.3vw, 18px);
       list-style: none;
       align-items: center;
       margin: 0;
@@ -246,23 +271,21 @@
       color: var(--text-muted);
       font-size: 0.88rem;
       font-weight: 500;
-      transition: color 0.2s ease;
+      transition: all 0.25s ease;
       position: relative;
-      padding: 6px 2px;
+      padding: 6px 12px;
+      border-radius: 999px;
       white-space: nowrap;
     }
-    .nav-links a:hover, .nav-links a.active {
+    .nav-links a:hover {
       color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
     }
-    .nav-links a.active::after {
-      content: "";
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      border-radius: 2px;
+    .nav-links a.active {
+      color: #ffffff !important;
+      background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.3), rgba(var(--accent2-rgb), 0.3));
+      border: 1px solid rgba(var(--accent-rgb), 0.45);
+      box-shadow: 0 0 12px var(--accent-glow);
     }
 
     .nav-actions {
@@ -2252,7 +2275,8 @@
   <canvas id="confettiCanvas" aria-hidden="true"></canvas>
 
   <!-- NAVIGATION -->
-  <header>
+  <header id="siteHeader">
+    <div class="scroll-progress-bar" id="scrollProgress" aria-hidden="true"></div>
     <nav class="navbar" aria-label="Main Navigation">
       <a href="#hero" class="nav-brand">
         <div class="avatar-mini">KS</div>
@@ -3485,30 +3509,84 @@
       };
 
       // ------------------------------------------------------------------------
-      // Shanmai Audio Welcome Greeting
+      // Real Vocal Speech Synthesis Greeting (Welcome Voice Note)
       // ------------------------------------------------------------------------
+      const welcomeSpeechText = "Welcome to my portfolio! I am K Shanmai. Please go through my portfolio to know how capable I am!";
       let isPlayingGreeting = false;
-      window.playVoiceGreeting = function () {
-        if (isPlayingGreeting) return;
-        isPlayingGreeting = true;
+
+      window.speakWelcomeMessage = function () {
         const bars = document.getElementById('waveBars');
         const text = document.getElementById('voiceGreetingText');
-        bars.classList.add('active');
-        text.textContent = '🔊 "Hey, I\'m Shanmai! Welcome to my portfolio..."';
 
-        // Play musical welcome arpeggio
-        [440, 554, 659, 880].forEach((freq, idx) => {
-          setTimeout(() => {
-            playTone(freq, 'sine', 0.35);
-          }, idx * 160);
-        });
+        if (!('speechSynthesis' in window)) {
+          if (text) text.textContent = '🔊 Speech Synthesis not supported in this browser.';
+          return;
+        }
 
-        setTimeout(() => {
-          bars.classList.remove('active');
-          text.textContent = '▶ Listen to Shanmai\'s 10s audio welcome';
+        window.speechSynthesis.cancel(); // Stop any pending speech
+
+        const utterance = new SpeechSynthesisUtterance(welcomeSpeechText);
+        utterance.rate = 0.95;
+        utterance.pitch = 1.05;
+        utterance.volume = 1.0;
+
+        // Choose a clear, natural English voice
+        const voices = window.speechSynthesis.getVoices();
+        const preferredVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('Zira') || v.name.includes('David') || v.name.includes('Rishi') || v.name.includes('India'))) || voices.find(v => v.lang.startsWith('en'));
+        if (preferredVoice) utterance.voice = preferredVoice;
+
+        utterance.onstart = function () {
+          isPlayingGreeting = true;
+          if (bars) bars.classList.add('active');
+          if (text) text.textContent = '🔊 "Go through my portfolio to know how capable I am..."';
+          showToast('Playing voice greeting...', '🔊');
+        };
+
+        utterance.onend = function () {
           isPlayingGreeting = false;
-        }, 4000);
+          if (bars) bars.classList.remove('active');
+          if (text) text.textContent = '▶ Replay Shanmai\'s voice greeting';
+        };
+
+        utterance.onerror = function () {
+          isPlayingGreeting = false;
+          if (bars) bars.classList.remove('active');
+          if (text) text.textContent = '▶ Click to listen to welcome voice';
+        };
+
+        window.speechSynthesis.speak(utterance);
       };
+
+      window.playVoiceGreeting = window.speakWelcomeMessage;
+
+      // Autoplay voice on site load (and fallback on first interaction for browser autoplay policy)
+      let speechTriggered = false;
+      function attemptAutoplayVoice() {
+        if (speechTriggered) return;
+        speechTriggered = true;
+        speakWelcomeMessage();
+      }
+
+      window.addEventListener('load', () => {
+        if ('speechSynthesis' in window) {
+          if (speechSynthesis.getVoices().length === 0) {
+            speechSynthesis.onvoiceschanged = () => {
+              attemptAutoplayVoice();
+            };
+          } else {
+            attemptAutoplayVoice();
+          }
+        }
+      });
+
+      // Browser fallback: if unprompted autoplay was blocked by Chrome/Edge policy, start on first gesture:
+      ['click', 'scroll', 'touchstart', 'keydown'].forEach(evt => {
+        window.addEventListener(evt, () => {
+          if (!speechTriggered) {
+            attemptAutoplayVoice();
+          }
+        }, { once: true, passive: true });
+      });
 
       // ------------------------------------------------------------------------
       // Live Bengaluru IST Clock
@@ -4360,6 +4438,26 @@
         });
       }, { rootMargin: '-45% 0px -50% 0px' });
       sections.forEach(s => navObserver.observe(s));
+
+      // ------------------------------------------------------------------------
+      // Dynamic Header Scroll Progress Bar & Compact Blur Toggle
+      // ------------------------------------------------------------------------
+      const headerEl = document.getElementById('siteHeader');
+      const scrollProgressBar = document.getElementById('scrollProgress');
+
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+        if (scrollProgressBar) {
+          scrollProgressBar.style.width = scrollPercent + '%';
+        }
+
+        if (headerEl) {
+          headerEl.classList.toggle('scrolled', scrollTop > 25);
+        }
+      }, { passive: true });
 
       // ------------------------------------------------------------------------
       // Constellation Canvas Animation
