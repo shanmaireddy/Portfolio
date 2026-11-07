@@ -1,0 +1,4448 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>K Shanmai · AI & Web Developer | Personal Portfolio</title>
+  <meta name="description" content="Personal portfolio of K Shanmai - B.Tech Information Sciences Engineering student at MSRUAS Bengaluru, Freelance AI Evaluation & RLHF Expert, and Full-Stack Builder.">
+  <meta name="keywords" content="K Shanmai, Shanmai, Portfolio, MSRUAS, Bengaluru, AI Evaluation, RLHF, Deccan AI, Prompt Engineering, Full-Stack Developer, OpenCV, Python">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="K Shanmai · AI & Web Developer | Personal Portfolio">
+  <meta property="og:description" content="Discover who Shanmai is: B.Tech ISE student at MSRUAS Bengaluru, AI evaluation specialist with Deccan AI, and creator of PULSE+, PeTrack, and Smart Mirror.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       CSS DESIGN TOKENS & DYNAMIC THEMES
+       ========================================================================== */
+    :root {
+      --bg: #080811;
+      --bg-subtle: #0f0f1c;
+      --surf: #151525;
+      --surf-hover: #1c1c32;
+      --surf-glass: rgba(21, 21, 37, 0.78);
+      --text: #f4f3fb;
+      --text-muted: #a3a2bd;
+      --text-sub: #71708e;
+      --accent: #8b5cf6;
+      --accent-rgb: 139, 92, 246;
+      --accent-glow: rgba(139, 92, 246, 0.35);
+      --accent2: #06b6d4;
+      --accent2-rgb: 6, 182, 212;
+      --accent3: #10b981;
+      --accent-warm: #f59e0b;
+      --line: #26253d;
+      --line-light: rgba(255, 255, 255, 0.08);
+      --card-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.55), 0 0 1px 1px rgba(255, 255, 255, 0.06);
+      --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      color-scheme: dark;
+    }
+
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --bg-subtle: #f1f5f9;
+      --surf: #ffffff;
+      --surf-hover: #f8fafc;
+      --surf-glass: rgba(255, 255, 255, 0.88);
+      --text: #0f172a;
+      --text-muted: #475569;
+      --text-sub: #94a3b8;
+      --accent: #7c3aed;
+      --accent-rgb: 124, 58, 237;
+      --accent-glow: rgba(124, 58, 237, 0.2);
+      --accent2: #0284c7;
+      --accent2-rgb: 2, 132, 199;
+      --accent3: #059669;
+      --accent-warm: #d97706;
+      --line: #e2e8f0;
+      --line-light: rgba(0, 0, 0, 0.06);
+      --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.07), 0 0 1px 1px rgba(0, 0, 0, 0.04);
+      color-scheme: light;
+    }
+
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.65;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: inherit;
+    }
+
+    input, textarea, select {
+      font-family: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent2);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    /* Accessibility Skip Link */
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 10px;
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 18px;
+      font-weight: 600;
+      z-index: 9999;
+      border-radius: 8px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+    }
+    .skip-link:focus {
+      left: 14px;
+    }
+
+    /* Subtle Ambient Gradient Background Orbs */
+    .bg-mesh {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .mesh-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(130px);
+      opacity: 0.2;
+      transition: transform 1.2s ease;
+    }
+    .mesh-orb-1 {
+      width: 700px;
+      height: 700px;
+      top: -200px;
+      right: -150px;
+      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+    }
+    .mesh-orb-2 {
+      width: 600px;
+      height: 600px;
+      bottom: 15%;
+      left: -180px;
+      background: radial-gradient(circle, var(--accent2) 0%, transparent 70%);
+    }
+    .mesh-orb-3 {
+      width: 450px;
+      height: 450px;
+      top: 40%;
+      right: 5%;
+      background: radial-gradient(circle, #ec4899 0%, transparent 70%);
+      opacity: 0.12;
+    }
+
+    /* ==========================================================================
+       NAVIGATION BAR
+       ========================================================================== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      width: 100%;
+      background: var(--surf-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px clamp(16px, 4vw, 40px);
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+      margin-right: clamp(12px, 2vw, 24px);
+    }
+    .avatar-mini {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #fff;
+      font-size: 0.82rem;
+      box-shadow: 0 0 10px var(--accent-glow);
+      flex-shrink: 0;
+    }
+    .nav-brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .nav-brand-name {
+      font-weight: 800;
+      font-size: 1.05rem;
+      white-space: nowrap;
+    }
+    .nav-brand-sub {
+      font-size: 0.68rem;
+      color: var(--accent2);
+      font-family: var(--font-mono);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: clamp(10px, 1.4vw, 22px);
+      list-style: none;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+      flex-shrink: 1;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+      position: relative;
+      padding: 6px 2px;
+      white-space: nowrap;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--text);
+    }
+    .nav-links a.active::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 2px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      margin-left: clamp(10px, 1.8vw, 24px);
+    }
+
+    .icon-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: var(--surf);
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+    .icon-btn:hover {
+      border-color: var(--accent);
+      background: var(--surf-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .kbd-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surf);
+      border: 1px solid var(--line);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .kbd-badge:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+    .kbd-key {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 0.72rem;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+    }
+
+    /* Mobile drawer */
+    .mobile-nav {
+      position: fixed;
+      top: 68px;
+      left: 0;
+      right: 0;
+      background: var(--surf);
+      border-bottom: 1px solid var(--line);
+      padding: 20px 6vw;
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+      z-index: 99;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+    .mobile-nav.open {
+      display: flex;
+    }
+    .mobile-nav a {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--line-light);
+    }
+    .mobile-nav a:hover, .mobile-nav a.active {
+      color: var(--accent);
+    }
+
+    /* ==========================================================================
+       LAYOUT & TYPOGRAPHY
+       ========================================================================== */
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    section {
+      padding: 96px 6vw;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: 48px;
+    }
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent2);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: clamp(1.85rem, 4vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 56px;
+      height: 4px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      margin-top: 10px;
+    }
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 650px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(var(--accent-rgb), 0.12);
+      color: var(--accent);
+      border: 1px solid rgba(var(--accent-rgb), 0.25);
+    }
+    .badge-cyan {
+      background: rgba(var(--accent2-rgb), 0.12);
+      color: var(--accent2);
+      border-color: rgba(var(--accent2-rgb), 0.25);
+    }
+    .badge-green {
+      background: rgba(16, 185, 129, 0.12);
+      color: #10b981;
+      border-color: rgba(16, 185, 129, 0.25);
+    }
+    .badge-amber {
+      background: rgba(245, 158, 11, 0.12);
+      color: #f59e0b;
+      border-color: rgba(245, 158, 11, 0.25);
+    }
+
+    /* Buttons */
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+      border: 1px solid var(--line);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #ffffff;
+      border: none;
+      box-shadow: 0 4px 16px var(--accent-glow);
+    }
+    .btn-primary:hover {
+      box-shadow: 0 8px 25px var(--accent-glow);
+    }
+    .btn-secondary {
+      background: var(--surf);
+      color: var(--text);
+      border-color: var(--line);
+    }
+    .btn-secondary:hover {
+      background: var(--surf-hover);
+      border-color: var(--accent);
+    }
+    .btn-sm {
+      padding: 8px 16px;
+      font-size: 0.85rem;
+    }
+
+    /* ==========================================================================
+       HERO SECTION (BALANCED 2-COLUMN + INTRODUCING WHO SHANMAI IS)
+       ========================================================================== */
+    #hero {
+      position: relative;
+      min-height: calc(100vh - 75px);
+      display: flex;
+      align-items: center;
+      padding: 60px 6vw;
+      max-width: 1300px;
+      margin: 0 auto;
+      overflow: visible;
+    }
+
+    #cv {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: auto;
+    }
+
+    .hero-container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    /* Hero Left Column */
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .hero-badges-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .hero-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--surf);
+      border: 1px solid var(--line);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    .status-beacon {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+      animation: beacon-ping 1.8s infinite;
+    }
+    @keyframes beacon-ping {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.2); }
+    }
+
+    .hero-greeting {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--accent2);
+      margin-bottom: 4px;
+    }
+
+    .hero-name {
+      font-size: clamp(2.8rem, 6.2vw, 4.8rem);
+      line-height: 1.05;
+      font-weight: 900;
+      margin-bottom: 14px;
+      background: linear-gradient(120deg, var(--text) 30%, var(--accent) 70%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -1.2px;
+    }
+
+    .hero-typing {
+      font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+      color: var(--text-muted);
+      font-weight: 500;
+      min-height: 2em;
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .hero-typing-word {
+      color: var(--accent);
+      font-weight: 700;
+      margin-left: 6px;
+    }
+    .typing-cursor {
+      display: inline-block;
+      width: 3px;
+      height: 1.15em;
+      background: var(--accent);
+      margin-left: 4px;
+      animation: blink 0.9s infinite steps(1);
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .hero-lead {
+      color: var(--text-muted);
+      font-size: 1.08rem;
+      line-height: 1.7;
+      margin-bottom: 22px;
+      max-width: 540px;
+    }
+    .hero-lead strong {
+      color: var(--text);
+    }
+
+    /* Shanmai Quick Persona Switcher */
+    .persona-selector {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 26px;
+    }
+    .persona-pill {
+      font-size: 0.78rem;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--surf);
+      border: 1px solid var(--line);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .persona-pill:hover, .persona-pill.active {
+      border-color: var(--accent);
+      color: var(--text);
+      background: var(--surf-hover);
+      box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.2);
+    }
+
+    /* Voice greeting badge */
+    .voice-greet-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(var(--accent2-rgb), 0.08);
+      border: 1px solid rgba(var(--accent2-rgb), 0.25);
+      border-radius: 999px;
+      padding: 6px 14px;
+      margin-bottom: 24px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .voice-greet-box:hover {
+      background: rgba(var(--accent2-rgb), 0.16);
+      transform: scale(1.02);
+    }
+    .wave-bars {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      height: 14px;
+    }
+    .wave-bar {
+      width: 3px;
+      height: 6px;
+      background: var(--accent2);
+      border-radius: 2px;
+      transition: height 0.2s ease;
+    }
+    .wave-bars.active .wave-bar:nth-child(1) { animation: wave 0.8s ease-in-out infinite 0.1s; }
+    .wave-bars.active .wave-bar:nth-child(2) { animation: wave 0.8s ease-in-out infinite 0.3s; }
+    .wave-bars.active .wave-bar:nth-child(3) { animation: wave 0.8s ease-in-out infinite 0.2s; }
+    .wave-bars.active .wave-bar:nth-child(4) { animation: wave 0.8s ease-in-out infinite 0.4s; }
+    @keyframes wave {
+      0%, 100% { height: 4px; }
+      50% { height: 14px; }
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 36px;
+      width: 100%;
+    }
+    .hero-stat-card {
+      background: var(--surf);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      transition: all 0.25s ease;
+    }
+    .hero-stat-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .hero-stat-card b {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      display: block;
+      line-height: 1.1;
+      font-family: var(--font-mono);
+    }
+    .hero-stat-card small {
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      line-height: 1.3;
+      display: block;
+      margin-top: 4px;
+    }
+
+    /* Hero Right Column: Interactive Console & Persona Visual */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .console-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 530px;
+      perspective: 1000px;
+    }
+
+    .console-card {
+      background: var(--surf);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px -10px rgba(0,0,0,0.5), 0 0 1px 1px var(--line-light);
+      backdrop-filter: blur(20px);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transform-style: preserve-3d;
+    }
+
+    .console-header {
+      background: var(--bg-subtle);
+      border-bottom: 1px solid var(--line);
+      padding: 12px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .console-dots {
+      display: flex;
+      gap: 7px;
+    }
+    .console-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #ff5f56; }
+    .dot-yellow { background: #ffbd2e; }
+    .dot-green { background: #27c93f; }
+
+    .console-title {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .console-live-tag {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    /* Console Tabs */
+    .console-tabs {
+      display: flex;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      padding: 0 12px;
+      overflow-x: auto;
+    }
+    .console-tab {
+      padding: 10px 16px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .console-tab:hover {
+      color: var(--text);
+    }
+    .console-tab.active {
+      color: var(--accent2);
+      border-bottom-color: var(--accent2);
+      background: rgba(var(--accent2-rgb), 0.05);
+    }
+
+    .console-body {
+      padding: 20px;
+      min-height: 380px;
+    }
+
+    /* Tab 1: RLHF Sandbox */
+    .sandbox-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .sandbox-prompt-box {
+      background: var(--bg-subtle);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 0.85rem;
+    }
+    .sandbox-prompt-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent2);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .sandbox-models {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .sandbox-model-card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+    .sandbox-model-card:hover {
+      border-color: var(--accent);
+      background: var(--surf-hover);
+    }
+    .sandbox-model-card.selected {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent), 0 4px 12px var(--accent-glow);
+    }
+    .model-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .model-name {
+      font-weight: 700;
+      font-size: 0.78rem;
+    }
+    .model-meta {
+      font-size: 0.7rem;
+      color: var(--text-sub);
+    }
+    .model-text {
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+    .rlhf-annotation-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px;
+    }
+    .rubric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+    }
+    .rubric-label {
+      color: var(--text-muted);
+    }
+    .rubric-stars {
+      color: #f59e0b;
+      cursor: pointer;
+      letter-spacing: 2px;
+    }
+    .rlhf-action-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .rlhf-feedback-badge {
+      font-size: 0.75rem;
+      color: #10b981;
+      display: none;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Tab 2: Code Runner */
+    .code-terminal {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      line-height: 1.55;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px;
+      overflow-x: auto;
+      color: #e2e8f0;
+      max-height: 260px;
+    }
+    .code-comment { color: #64748b; }
+    .code-kw { color: #c084fc; font-weight: 600; }
+    .code-fn { color: #38bdf8; }
+    .code-str { color: #34d399; }
+    .code-num { color: #fb923c; }
+    .code-run-bar {
+      margin-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .terminal-output {
+      margin-top: 12px;
+      background: rgba(0,0,0,0.4);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: #10b981;
+      display: none;
+    }
+
+    /* Tab 3: Terminal CLI (Interactive Easter Egg CLI) */
+    .interactive-cli {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+    }
+    .cli-history {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      height: 220px;
+      overflow-y: auto;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .cli-prompt-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 12px;
+    }
+    .cli-prompt-label {
+      color: var(--accent2);
+      font-weight: 700;
+    }
+    .cli-input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      width: 100%;
+    }
+    .cli-quick-cmds {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .cli-tag {
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      color: var(--accent2);
+      cursor: pointer;
+    }
+
+    /* Floating Badges around Console */
+    .floating-card {
+      position: absolute;
+      background: var(--surf-glass);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+      padding: 8px 14px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      font-size: 0.8rem;
+      font-weight: 600;
+      white-space: nowrap;
+      z-index: 5;
+      animation: float-slow 4s ease-in-out infinite;
+    }
+    .floating-card-1 {
+      top: -18px;
+      right: -20px;
+      border-color: rgba(var(--accent-rgb), 0.4);
+      color: var(--accent);
+      animation-delay: 0s;
+    }
+    .floating-card-2 {
+      bottom: -16px;
+      left: -20px;
+      border-color: rgba(var(--accent2-rgb), 0.4);
+      color: var(--accent2);
+      animation-delay: 2s;
+    }
+    @keyframes float-slow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ==========================================================================
+       SECTION: WHO IS SHANMAI? (STORY, PHILOSOPHY & LIFE)
+       ========================================================================== */
+    .story-hero-card {
+      background: linear-gradient(135deg, var(--surf) 0%, var(--bg-subtle) 100%);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 36px;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 32px;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .shanmai-portrait-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .shanmai-avatar-wrapper {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      padding: 4px;
+      box-shadow: 0 0 30px var(--accent-glow);
+      position: relative;
+      margin-bottom: 14px;
+    }
+    .shanmai-avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-size: 3.8rem;
+    }
+    .avatar-tag {
+      position: absolute;
+      bottom: -6px;
+      background: var(--surf);
+      border: 1px solid var(--accent);
+      font-size: 0.72rem;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+      color: var(--accent);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .portrait-name {
+      font-weight: 800;
+      font-size: 1.25rem;
+      margin-top: 4px;
+    }
+    .portrait-role {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .story-hero-text h3 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      background: linear-gradient(100deg, var(--text) 40%, var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .story-hero-text p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .story-quote-card {
+      background: var(--bg);
+      border-left: 3px solid var(--accent);
+      padding: 12px 16px;
+      border-radius: 0 10px 10px 0;
+      font-style: italic;
+      color: var(--text);
+      font-size: 0.92rem;
+    }
+
+    /* Interactive Journey & Philosophy Tabs */
+    .persona-tabs-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .p-tab-btn {
+      padding: 10px 22px;
+      border-radius: 999px;
+      background: var(--surf);
+      border: 1px solid var(--line);
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .p-tab-btn:hover, .p-tab-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      box-shadow: 0 4px 16px var(--accent-glow);
+    }
+
+    .persona-tab-panel {
+      background: var(--surf);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: var(--card-shadow);
+    }
+
+    /* Tab 1: Journey Timeline */
+    .journey-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .journey-card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+    .journey-card:hover {
+      border-color: var(--accent2);
+      transform: translateY(-3px);
+    }
+    .journey-year {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--accent2);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .journey-card h4 {
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+    .journey-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Tab 2: Core Philosophy */
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .philosophy-card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .philosophy-icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+    .philosophy-card h4 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+    .philosophy-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* Tab 3: 24h Day in Life Interactive Routine */
+    .routine-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .routine-slider-row {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
+    .routine-chip {
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .routine-chip.active, .routine-chip:hover {
+      background: var(--accent2);
+      color: #fff;
+      border-color: var(--accent2);
+    }
+    .routine-display-box {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .routine-time-badge {
+      font-family: var(--font-mono);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--accent2);
+      background: var(--surf);
+      border: 1px solid var(--line);
+      padding: 12px 20px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .routine-details h4 {
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+    }
+    .routine-details p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    /* ==========================================================================
+       SECTION: ASK SHANMAI AI (INTERACTIVE CHATBOT)
+       ========================================================================== */
+    .chat-section-wrapper {
+      background: linear-gradient(180deg, var(--surf) 0%, var(--bg-subtle) 100%);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 36px;
+      box-shadow: var(--card-shadow);
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .chat-intro h3 {
+      font-size: 1.45rem;
+      margin-bottom: 12px;
+    }
+    .chat-intro p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+    .suggested-questions-title {
+      font-size: 0.8rem;
+      color: var(--accent2);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    .suggested-questions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .q-btn {
+      text-align: left;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      font-size: 0.85rem;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .q-btn:hover {
+      border-color: var(--accent);
+      background: var(--surf-hover);
+      transform: translateX(4px);
+    }
+
+    /* Chat Window */
+    .chat-window {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 440px;
+    }
+    .chat-header {
+      background: var(--surf);
+      border-bottom: 1px solid var(--line);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .chat-header-user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .chat-status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+    }
+    .chat-messages {
+      flex: 1;
+      padding: 18px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .chat-bubble {
+      max-width: 85%;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    .bubble-bot {
+      align-self: flex-start;
+      background: var(--surf);
+      border: 1px solid var(--line);
+      color: var(--text);
+      border-bottom-left-radius: 4px;
+    }
+    .bubble-user {
+      align-self: flex-end;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #ffffff;
+      border-bottom-right-radius: 4px;
+    }
+    .chat-input-bar {
+      display: flex;
+      padding: 12px;
+      background: var(--surf);
+      border-top: 1px solid var(--line);
+      gap: 8px;
+    }
+    .chat-input {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 16px;
+      color: var(--text);
+      font-size: 0.88rem;
+      outline: none;
+    }
+    .chat-send-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+    .chat-send-btn:hover {
+      transform: scale(1.08);
+    }
+
+    /* ==========================================================================
+       SECTION: INTERACTIVE PROJECT LABS & LIVE SIMULATORS
+       ========================================================================== */
+    .filter-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    .filter-chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .filter-chip {
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: var(--surf);
+      border: 1px solid var(--line);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .filter-chip:hover, .filter-chip.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: var(--surf);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 16px;
+      gap: 8px;
+      min-width: 240px;
+    }
+    .search-box input {
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-size: 0.88rem;
+      outline: none;
+      width: 100%;
+    }
+    .search-box input::placeholder {
+      color: var(--text-sub);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 26px;
+    }
+
+    .project-card {
+      background: var(--surf);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px -10px rgba(0,0,0,0.4), 0 0 0 1px var(--accent-glow);
+    }
+
+    .project-top {
+      margin-bottom: 20px;
+    }
+    .project-icon-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+    .project-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+    }
+    .project-category-tag {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      color: var(--accent2);
+      background: rgba(var(--accent2-rgb), 0.1);
+      border: 1px solid rgba(var(--accent2-rgb), 0.25);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .project-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .project-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 22px;
+    }
+    .tag {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 3px 9px;
+    }
+
+    .project-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--line-light);
+      padding-top: 16px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .project-btn {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: gap 0.2s;
+    }
+    .project-btn:hover {
+      gap: 10px;
+      color: var(--accent2);
+    }
+    .live-sim-btn {
+      font-size: 0.78rem;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: rgba(var(--accent2-rgb), 0.1);
+      border: 1px solid var(--accent2);
+      color: var(--accent2);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .live-sim-btn:hover {
+      background: var(--accent2);
+      color: #fff;
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-backdrop.open {
+      display: flex;
+    }
+    .modal-dialog {
+      background: var(--surf);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      max-width: 680px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 32px;
+      position: relative;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+      animation: modal-pop 0.25s ease-out;
+    }
+    @keyframes modal-pop {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+    .modal-close:hover {
+      color: var(--text);
+      border-color: var(--accent);
+    }
+
+    /* Interactive Simulator In-Modal UI */
+    .simulator-container {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+      margin: 18px 0;
+    }
+    .sim-toggle-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--line-light);
+      font-size: 0.85rem;
+    }
+    .sim-switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      background: var(--surf);
+      border-radius: 999px;
+      cursor: pointer;
+      border: 1px solid var(--line);
+      transition: background 0.2s;
+    }
+    .sim-switch::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      transition: transform 0.2s;
+    }
+    .sim-switch.active {
+      background: var(--accent3);
+      border-color: var(--accent3);
+    }
+    .sim-switch.active::after {
+      transform: translateX(20px);
+      background: #ffffff;
+    }
+
+    /* ==========================================================================
+       SECTION: EXPERIENCE & EDUCATION TIMELINE
+       ========================================================================== */
+    .timeline {
+      position: relative;
+      border-left: 2px solid var(--line);
+      margin-left: 12px;
+      padding-left: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .timeline-item {
+      position: relative;
+    }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -41px;
+      top: 6px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 4px solid var(--bg);
+      box-shadow: 0 0 0 2px var(--accent);
+      transition: all 0.2s;
+    }
+    .timeline-item:hover::before {
+      background: var(--accent2);
+      box-shadow: 0 0 0 3px var(--accent2);
+      transform: scale(1.15);
+    }
+    .timeline-date {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent2);
+      margin-bottom: 4px;
+    }
+    .timeline-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .timeline-org {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .timeline-duties {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .timeline-duties li {
+      position: relative;
+      padding-left: 20px;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+    .timeline-duties li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    /* ==========================================================================
+       SECTION: SKILLS WITH PROJECT MAPPING
+       ========================================================================== */
+    .skills-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .skill-bar-card {
+      background: var(--surf);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px 22px;
+      transition: border-color 0.2s;
+    }
+    .skill-bar-card:hover {
+      border-color: var(--accent);
+    }
+    .skill-bar-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .skill-track {
+      height: 9px;
+      background: var(--line);
+      border-radius: 9px;
+      overflow: hidden;
+    }
+    .skill-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 9px;
+      transition: width 1.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .chips-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .chip {
+      background: var(--surf);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .chip:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+
+    /* ==========================================================================
+       SECTION: CERTIFICATIONS SHOWCASE
+       ========================================================================== */
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 20px;
+    }
+    .cert-card {
+      background: var(--surf);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: all 0.25s ease;
+    }
+    .cert-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: var(--card-shadow);
+    }
+    .cert-badge-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(var(--accent-rgb), 0.12);
+      border: 1px solid rgba(var(--accent-rgb), 0.25);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .cert-body h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .cert-issuer {
+      color: var(--accent2);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .cert-desc {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+
+    /* ==========================================================================
+       SECTION: CONTACT & BENGALURU AVAILABILITY
+       ========================================================================== */
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 48px;
+      background: var(--surf);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 48px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .contact-time-card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .time-header {
+      font-size: 0.78rem;
+      color: var(--text-sub);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+    .time-val {
+      font-family: var(--font-mono);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent2);
+    }
+
+    .contact-direct-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .contact-link-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      transition: all 0.2s;
+    }
+    .contact-link-row:hover {
+      border-color: var(--accent);
+      transform: translateX(4px);
+    }
+    .contact-link-icon {
+      font-size: 1.2rem;
+    }
+
+    /* Contact Form */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .form-control {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: var(--text);
+      font-size: 0.95rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-control:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+      outline: none;
+    }
+
+    /* ==========================================================================
+       COMMAND PALETTE (CTRL + K)
+       ========================================================================== */
+    .cmd-palette {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 15vh;
+    }
+    .cmd-palette.open {
+      display: flex;
+    }
+    .cmd-box {
+      background: var(--surf);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 580px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+      animation: cmd-in 0.2s ease-out;
+    }
+    @keyframes cmd-in {
+      from { transform: translateY(-12px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .cmd-input-row {
+      display: flex;
+      align-items: center;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--line);
+      gap: 12px;
+    }
+    .cmd-input {
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-size: 1.05rem;
+      outline: none;
+      width: 100%;
+    }
+    .cmd-results {
+      max-height: 320px;
+      overflow-y: auto;
+      padding: 8px;
+    }
+    .cmd-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      transition: all 0.15s;
+    }
+    .cmd-item:hover, .cmd-item.active {
+      background: var(--surf-hover);
+      color: var(--text);
+    }
+    .cmd-item-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Resume Viewer Modal */
+    .resume-modal-dialog {
+      background: var(--surf);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      max-width: 760px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 36px;
+      position: relative;
+    }
+    .resume-paper {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 28px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* Toast Notification */
+    .toast-pill {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--surf);
+      color: var(--text);
+      border: 1px solid var(--accent);
+      padding: 10px 22px;
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      z-index: 3000;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .toast-pill.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* Confetti Canvas */
+    #confettiCanvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 40px 6vw;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      background: var(--bg-subtle);
+    }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* ==========================================================================
+       RESPONSIVE DESIGN
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .console-wrapper {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .story-hero-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .shanmai-portrait-box {
+        margin: 0 auto;
+      }
+      .chat-section-wrapper {
+        grid-template-columns: 1fr;
+      }
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 1260px) {
+      .kbd-badge span:first-child {
+        display: none;
+      }
+      .nav-links {
+        gap: 12px;
+      }
+      .nav-links a {
+        font-size: 0.84rem;
+      }
+    }
+
+    @media (max-width: 1080px) {
+      .nav-links, .kbd-badge {
+        display: none !important;
+      }
+      .mobile-menu-btn {
+        display: inline-flex !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .skills-panel {
+        grid-template-columns: 1fr;
+      }
+      .sandbox-models {
+        grid-template-columns: 1fr;
+      }
+      .routine-display-box {
+        flex-direction: column;
+        text-align: center;
+      }
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+      .skill-fill {
+        width: var(--w) !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Screen reader skip -->
+  <a class="skip-link" href="#hero">Skip to main content</a>
+
+  <!-- Ambient Light Mesh -->
+  <div class="bg-mesh" aria-hidden="true">
+    <div class="mesh-orb mesh-orb-1"></div>
+    <div class="mesh-orb mesh-orb-2"></div>
+    <div class="mesh-orb mesh-orb-3"></div>
+  </div>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confettiCanvas" aria-hidden="true"></canvas>
+
+  <!-- NAVIGATION -->
+  <header>
+    <nav class="navbar" aria-label="Main Navigation">
+      <a href="#hero" class="nav-brand">
+        <div class="avatar-mini">KS</div>
+        <div class="nav-brand-text">
+          <span class="nav-brand-name">K SHANMAI</span>
+          <span class="nav-brand-sub">AI &amp; WEB DEV</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#who-is-shanmai">About</a></li>
+        <li><a href="#chat-ai">AI Assistant</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#certs">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- FolioForge 2026 Disclosure Trigger -->
+        <button class="btn btn-secondary btn-sm" onclick="openDisclosureModal()" title="FolioForge 2026 Tech & AI Disclosure" style="padding: 6px 12px; font-size: 0.78rem;">
+          <span>🏆 FolioForge</span>
+        </button>
+
+        <!-- Quick Resume Modal Trigger -->
+        <button class="btn btn-secondary btn-sm" onclick="openResumeModal()" title="View 1-Page Resume" style="padding: 6px 12px; font-size: 0.78rem;">
+          <span>📄 Resume</span>
+        </button>
+
+        <!-- Command Palette trigger -->
+        <button class="kbd-badge" id="cmdTrigger" aria-label="Open command palette (Ctrl+K)">
+          <span>Search</span>
+          <span class="kbd-key">Ctrl</span><span class="kbd-key">K</span>
+        </button>
+
+        <!-- Sound FX toggle (Opt-in) -->
+        <button class="icon-btn" id="soundToggle" title="Toggle UI sound effects" aria-label="Toggle UI sound effects">
+          <span id="soundIcon">🔇</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button class="icon-btn" id="themeToggle" title="Toggle dark/light theme" aria-label="Toggle light and dark theme">
+          <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- Mobile hamburger -->
+        <button class="icon-btn mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu">
+          <span>☰</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#who-is-shanmai" class="mobile-nav-link">About (Who is Shanmai?)</a>
+      <a href="#chat-ai" class="mobile-nav-link">Ask Shanmai AI Assistant</a>
+      <a href="#projects" class="mobile-nav-link">Projects &amp; Simulators</a>
+      <a href="#experience" class="mobile-nav-link">Experience &amp; Education</a>
+      <a href="#skills" class="mobile-nav-link">Technical Skills</a>
+      <a href="#certs" class="mobile-nav-link">Certifications</a>
+      <a href="#contact" class="mobile-nav-link">Contact</a>
+      <div style="display:flex; gap:10px; margin-top:8px; flex-wrap:wrap;">
+        <button class="btn btn-primary btn-sm" onclick="openResumeModal(); mobileNav.classList.remove('open');">
+          <span>📄 View Resume</span>
+        </button>
+        <button class="btn btn-secondary btn-sm" onclick="openDisclosureModal(); mobileNav.classList.remove('open');">
+          <span>🏆 FolioForge 2026 Disclosure</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================================================
+         HERO SECTION: 2-COLUMN BALANCED LAYOUT (FIXES BLANK RIGHT SIDE)
+         ========================================================================== -->
+    <section id="hero">
+      <!-- Dynamic constellation canvas -->
+      <canvas id="cv" aria-hidden="true"></canvas>
+
+      <div class="hero-container">
+        <!-- Left Side: Who is Shanmai Persona & Intro -->
+        <div class="hero-content">
+          <div class="hero-badges-row">
+            <div class="hero-status-pill">
+              <span class="status-beacon"></span>
+              <span>Available for Internships &amp; Roles 2026</span>
+            </div>
+            <span class="badge badge-cyan">📍 Bengaluru Tech Hub</span>
+          </div>
+
+          <p class="hero-greeting">Hi, I’m</p>
+          <h1 class="hero-name">K Shanmai</h1>
+          
+          <div class="hero-typing" aria-live="polite">
+            <span>I craft</span>
+            <span class="hero-typing-word" id="typeWord"></span>
+            <span class="typing-cursor"></span>
+          </div>
+
+          <p class="hero-lead">
+            <strong>Information Sciences Engineering undergrad at MSRUAS Bengaluru</strong>, bridging classical software architecture with frontier <strong>human-in-the-loop AI evaluation</strong> (RLHF), prompt engineering, and edge computer vision.
+          </p>
+
+          <!-- Interactive Persona Switcher -->
+          <div class="persona-selector">
+            <span style="font-size:0.75rem; color:var(--text-sub); display:flex; align-items:center;">WHO I AM:</span>
+            <button class="persona-pill active" onclick="switchPersona(0)">🎓 Student @ MSRUAS</button>
+            <button class="persona-pill" onclick="switchPersona(1)">🧠 Deccan AI Evaluator</button>
+            <button class="persona-pill" onclick="switchPersona(2)">🛠️ Full-Stack Builder</button>
+            <button class="persona-pill" onclick="switchPersona(3)">🛡️ Privacy Advocate</button>
+          </div>
+
+          <!-- Interactive Voice Note Greeting Pill -->
+          <div class="voice-greet-box" id="voiceGreetingBtn" onclick="playVoiceGreeting()">
+            <div class="wave-bars" id="waveBars">
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+            </div>
+            <span style="font-size:0.82rem; font-weight:600; color:var(--accent2);" id="voiceGreetingText">
+              ▶ Listen to Shanmai's 10s audio welcome
+            </span>
+          </div>
+
+          <!-- Hero Action CTAs -->
+          <div class="btn-group">
+            <a class="btn btn-primary" href="#projects">
+              <span>Explore My Work</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a class="btn btn-secondary" href="#chat-ai">
+              <span>💬 Ask Shanmai AI</span>
+            </a>
+            <button class="btn btn-secondary" id="heroCopyEmailBtn" title="Copy Email">
+              <span>✉ Copy Email</span>
+            </button>
+          </div>
+
+          <!-- Metric Cards -->
+          <div class="hero-stats">
+            <div class="hero-stat-card">
+              <b data-target="4">0</b>
+              <small>Full-Stack Systems</small>
+            </div>
+            <div class="hero-stat-card">
+              <b data-target="5">0</b>
+              <small>Industry Certs</small>
+            </div>
+            <div class="hero-stat-card">
+              <b data-target="1">0</b>
+              <small>Deccan AI Role</small>
+            </div>
+            <div class="hero-stat-card">
+              <b data-target="1000" data-suffix="+">0</b>
+              <small>RLHF Annotations</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Interactive AI & Developer Console (No More Blank Space!) -->
+        <div class="hero-visual">
+          <div class="console-wrapper">
+            <!-- Floating Hologram Badges -->
+            <div class="floating-card floating-card-1">
+              <span>✨ Deccan AI Verified Expert</span>
+            </div>
+            <div class="floating-card floating-card-2">
+              <span>⚡ Pose Estimation &amp; CV</span>
+            </div>
+
+            <!-- Main Interactive Console -->
+            <div class="console-card" id="console3d">
+              <div class="console-header">
+                <div class="console-dots">
+                  <span class="console-dot dot-red"></span>
+                  <span class="console-dot dot-yellow"></span>
+                  <span class="console-dot dot-green"></span>
+                </div>
+                <div class="console-title">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+                  <span>shanmai@bengaluru: ~/ai-eval-terminal</span>
+                </div>
+                <span class="console-live-tag">LIVE DEMO</span>
+              </div>
+
+              <!-- Interactive Tabs -->
+              <div class="console-tabs" role="tablist">
+                <button class="console-tab active" data-tab="rlhfTab" role="tab">⚡ RLHF Sandbox</button>
+                <button class="console-tab" data-tab="codeTab" role="tab">💻 Code Runner</button>
+                <button class="console-tab" data-tab="cliTab" role="tab">⌨️ Terminal CLI</button>
+              </div>
+
+              <div class="console-body">
+                <!-- Tab 1: RLHF Sandbox -->
+                <div class="console-tab-content" id="rlhfTab">
+                  <div class="sandbox-container">
+                    <div class="sandbox-prompt-box">
+                      <div class="sandbox-prompt-label">Target Prompt (Action Extensions V2)</div>
+                      <p><strong>"Design a high-priority triage heuristic for hospital bed intake in PULSE+"</strong></p>
+                    </div>
+
+                    <div class="sandbox-models">
+                      <!-- Model A -->
+                      <div class="sandbox-model-card selected" id="modelCardA" onclick="selectModel('A')">
+                        <div class="model-header">
+                          <span class="model-name">Candidate Model Alpha</span>
+                          <span class="model-meta">Latency: 280ms</span>
+                        </div>
+                        <p class="model-text">
+                          Prioritizes emergency vitals (SpO2 &lt; 90, heart rate &gt; 120), automatically dispatching real-time WebSocket alerts to duty doctors with zero hallucination.
+                        </p>
+                      </div>
+
+                      <!-- Model B -->
+                      <div class="sandbox-model-card" id="modelCardB" onclick="selectModel('B')">
+                        <div class="model-header">
+                          <span class="model-name">Candidate Model Beta</span>
+                          <span class="model-meta">Latency: 410ms</span>
+                        </div>
+                        <p class="model-text">
+                          Suggests checking patient insurance policy first before scheduling, then logs a non-urgent triage entry into general database.
+                        </p>
+                      </div>
+                    </div>
+
+                    <!-- RLHF Rubric Scoring -->
+                    <div class="rlhf-annotation-bar">
+                      <div class="rubric-row">
+                        <span class="rubric-label">Medical Safety &amp; Urgency:</span>
+                        <span class="rubric-stars" id="starSafety">★★★★★</span>
+                      </div>
+                      <div class="rubric-row">
+                        <span class="rubric-label">Guideline Adherence:</span>
+                        <span class="badge badge-green">100% Compliant</span>
+                      </div>
+                      <div class="rlhf-action-row">
+                        <button class="btn btn-primary btn-sm" id="submitRlhfBtn" onclick="submitRlhfRating()">
+                          <span>Submit RLHF Feedback</span>
+                        </button>
+                        <span class="rlhf-feedback-badge" id="rlhfFeedbackStatus">
+                          ✓ Ranked Alpha &gt; Beta (+1 Reward)
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Tab 2: Code Runner -->
+                <div class="console-tab-content" id="codeTab" style="display:none;">
+                  <div class="code-terminal">
+                    <span class="code-comment"># Smart Mirror Pose Estimation Pipeline</span><br>
+                    <span class="code-kw">import</span> cv2<br>
+                    <span class="code-kw">import</span> mediapipe <span class="code-kw">as</span> mp<br><br>
+                    <span class="code-kw">def</span> <span class="code-fn">analyze_child_activity</span>(frame):<br>
+                    &nbsp;&nbsp;pose = mp.solutions.pose.Pose()<br>
+                    &nbsp;&nbsp;results = pose.process(frame)<br>
+                    &nbsp;&nbsp;<span class="code-kw">if</span> results.pose_landmarks:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-kw">return</span> {<span class="code-str">"activity"</span>: <span class="code-str">"Reading / Writing"</span>, <span class="code-str">"posture_score"</span>: <span class="code-num">0.96</span>}<br>
+                    &nbsp;&nbsp;<span class="code-kw">return</span> <span class="code-kw">None</span>
+                  </div>
+
+                  <div class="code-run-bar">
+                    <button class="btn btn-primary btn-sm" id="runCodeBtn" onclick="runCodeDemo()">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                      <span>Execute Script</span>
+                    </button>
+                    <span style="font-size:0.75rem; color:var(--text-sub);">Python 3.11 · MediaPipe v0.10</span>
+                  </div>
+
+                  <div class="terminal-output" id="termOutput">
+                    &gt; Initializing camera stream...<br>
+                    &gt; MediaPipe landmarks detected (33 keypoints)<br>
+                    &gt; Activity: <strong>"Reading / Homework"</strong> (Confidence: 96.4%)<br>
+                    &gt; Privacy Protocol: Frames processed locally on edge device.
+                  </div>
+                </div>
+
+                <!-- Tab 3: Interactive Terminal CLI -->
+                <div class="console-tab-content" id="cliTab" style="display:none;">
+                  <div class="interactive-cli">
+                    <div class="cli-history" id="cliHistory">
+                      Welcome to Shanmai's Interactive Terminal.<br>
+                      Type <strong>whoami</strong>, <strong>skills</strong>, <strong>projects</strong>, or <strong>sudo hire</strong>.<br>
+                      ---
+                    </div>
+                    <div class="cli-quick-cmds">
+                      <span class="cli-tag" onclick="runQuickCli('whoami')">whoami</span>
+                      <span class="cli-tag" onclick="runQuickCli('skills')">skills</span>
+                      <span class="cli-tag" onclick="runQuickCli('sudo hire')">sudo hire</span>
+                      <span class="cli-tag" onclick="runQuickCli('clear')">clear</span>
+                    </div>
+                    <form class="cli-prompt-row" onsubmit="handleCliSubmit(event)">
+                      <span class="cli-prompt-label">shanmai@folio:~$</span>
+                      <input type="text" class="cli-input" id="cliInputField" placeholder="Type a command and press Enter..." autocomplete="off">
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION: WHO IS SHANMAI? (THE STORY, PERSONA & PHILOSOPHY)
+         ========================================================================== -->
+    <section id="who-is-shanmai" class="reveal">
+      <div class="section-header">
+        <span class="section-eyebrow">01 // The Identity</span>
+        <h2 class="section-title">Who is Shanmai?</h2>
+        <p class="section-desc">Get to know the engineer, the mindset, and the journey behind the code.</p>
+      </div>
+
+      <!-- Hero Identity Card with Portrait & Bio -->
+      <div class="story-hero-card">
+        <div class="shanmai-portrait-box">
+          <div class="shanmai-avatar-wrapper">
+            <div class="shanmai-avatar">
+              <!-- Animated Tech Persona Visual -->
+              <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+                <circle cx="50" cy="50" r="46" fill="#141424"/>
+                <circle cx="50" cy="40" r="18" fill="#8b5cf6" opacity="0.9"/>
+                <path d="M22 84c0-16 12-28 28-28s28 12 28 28" fill="#38bdf8" opacity="0.85"/>
+                <!-- Glasses / Code Visor -->
+                <rect x="36" y="36" width="12" height="7" rx="2" fill="#090912" stroke="#38bdf8" stroke-width="2"/>
+                <rect x="52" y="36" width="12" height="7" rx="2" fill="#090912" stroke="#38bdf8" stroke-width="2"/>
+                <line x1="48" y1="39.5" x2="52" y2="39.5" stroke="#38bdf8" stroke-width="2"/>
+              </svg>
+            </div>
+            <span class="avatar-tag">BENGALURU, IN</span>
+          </div>
+          <div class="portrait-name">K Shanmai</div>
+          <div class="portrait-role">Engineer &amp; AI Evaluator</div>
+        </div>
+
+        <div class="story-hero-text">
+          <h3>"Code builds the skeleton of software; human evaluation gives it a conscious pulse."</h3>
+          <p>
+            I am a builder at heart. Based in Bengaluru, I am pursuing my <strong>B.Tech in Information Sciences Engineering at M S Ramaiah University of Applied Sciences (MSRUAS)</strong>. What sets me apart is my dual focus: I don't just develop software applications; I rigorously audit and train frontier AI models to make them safe, grounded, and aligned with real human needs.
+          </p>
+          <p>
+            From engineering multi-role healthcare platforms like <strong>PULSE+</strong> to designing privacy-preserving child activity monitors with <strong>OpenCV</strong>, I love tackling problems where human privacy, system reliability, and cutting-edge artificial intelligence intersect.
+          </p>
+          <div class="story-quote-card">
+            "I believe the greatest engineering challenge of our generation isn't just generating AI outputs faster — it's ensuring they are truthful, ethical, and built for real human impact."
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Persona Tabs Bar -->
+      <div class="persona-tabs-bar" role="tablist">
+        <button class="p-tab-btn active" onclick="switchPersonaTab('journey')">🗺️ My Journey &amp; Milestones</button>
+        <button class="p-tab-btn" onclick="switchPersonaTab('philosophy')">🧭 Engineering Philosophy</button>
+        <button class="p-tab-btn" onclick="switchPersonaTab('routine')">⏱️ A Day in Shanmai's Life</button>
+        <button class="p-tab-btn" onclick="switchPersonaTab('beyond')">☕ Beyond the Terminal</button>
+      </div>
+
+      <!-- Tab Content 1: Journey -->
+      <div class="persona-tab-panel" id="personaJourney">
+        <div class="journey-grid">
+          <div class="journey-card">
+            <div class="journey-year">2021 – 2022</div>
+            <h4>Curiosity Ignited</h4>
+            <span class="badge" style="margin-bottom:8px;">Army Public School</span>
+            <p>Built deep academic foundations in Mathematics and Science. Discovered the thrill of logic, algorithmic puzzles, and early scripting.</p>
+          </div>
+
+          <div class="journey-card">
+            <div class="journey-year">2023 – 2024</div>
+            <h4>Higher Secondary Mastery</h4>
+            <span class="badge" style="margin-bottom:8px;">Pragathi The School</span>
+            <p>Mastered advanced analytical mathematics and Python basics. Built first database programs and resolved to pursue Information Sciences Engineering.</p>
+          </div>
+
+          <div class="journey-card">
+            <div class="journey-year">2024 – PRESENT</div>
+            <h4>B.Tech ISE Undergrad</h4>
+            <span class="badge badge-cyan" style="margin-bottom:8px;">M S Ramaiah University</span>
+            <p>Diving deep into Data Structures, Computer Vision, Firebase cloud backends, and full-stack software development in Bengaluru's tech ecosystem.</p>
+          </div>
+
+          <div class="journey-card">
+            <div class="journey-year">MARCH 2025 – PRESENT</div>
+            <h4>Frontier AI Evaluation</h4>
+            <span class="badge badge-green" style="margin-bottom:8px;">Deccan AI by Soul AI</span>
+            <p>Selected to evaluate LLM reasoning, perform RLHF on Action Extensions V2, and write high-density corrective human feedback for generative AI models.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content 2: Philosophy -->
+      <div class="persona-tab-panel" id="personaPhilosophy" style="display:none;">
+        <div class="philosophy-grid">
+          <div class="philosophy-card">
+            <div class="philosophy-icon">🛡️</div>
+            <h4>1. Privacy by Default</h4>
+            <p>Users should never have to sacrifice their privacy for convenience. In projects like <em>PeTrack</em>, pet owners have granular toggles over what details are shared. In <em>Smart Mirror</em>, all skeletal processing happens strictly in RAM on the edge device—zero camera footage is ever stored or transmitted.</p>
+          </div>
+
+          <div class="philosophy-card">
+            <div class="philosophy-icon">⚖️</div>
+            <h4>2. Human-in-the-Loop Alignment</h4>
+            <p>Raw LLMs frequently hallucinate and make confident errors. My work at Deccan AI taught me that high-quality human judgment, rigorous rubrics, and detailed RLHF feedback loops are the true drivers of safe, deployable intelligence.</p>
+          </div>
+
+          <div class="philosophy-card">
+            <div class="philosophy-icon">⚡</div>
+            <h4>3. Resilient Full-Stack Pragmatism</h4>
+            <p>I choose technologies that deliver immediate value: Firebase for real-time reactivity, Python for high-performance computer vision, and vanilla web standards for lightweight, blazing-fast interfaces that run effortlessly anywhere.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content 3: A Day in Shanmai's Life -->
+      <div class="persona-tab-panel" id="personaRoutine" style="display:none;">
+        <div class="routine-wrapper">
+          <p style="color:var(--text-muted); font-size:0.95rem; margin-bottom:8px;">
+            Click any hour below to see what Shanmai is doing throughout a typical day in Bengaluru:
+          </p>
+          <div class="routine-slider-row">
+            <button class="routine-chip active" onclick="showRoutine(0)">🌅 08:30 AM · MSRUAS Lectures</button>
+            <button class="routine-chip" onclick="showRoutine(1)">💻 02:00 PM · Project Sprints</button>
+            <button class="routine-chip" onclick="showRoutine(2)">🧠 06:30 PM · Deccan AI RLHF</button>
+            <button class="routine-chip" onclick="showRoutine(3)">🌙 10:00 PM · CV &amp; Paper Exploration</button>
+          </div>
+
+          <div class="routine-display-box" id="routineDisplay">
+            <div class="routine-time-badge" id="routineTime">08:30 AM</div>
+            <div class="routine-details">
+              <h4 id="routineTitle">ISE Classes &amp; Algorithm Labs at MSRUAS</h4>
+              <p id="routineDesc">
+                Attending morning lectures on Data Structures, Database Systems, and Operating Systems at M S Ramaiah University of Applied Sciences. Engaging in lab experiments and discussing software architectures with peers.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content 4: Beyond the Terminal -->
+      <div class="persona-tab-panel" id="personaBeyond" style="display:none;">
+        <div class="philosophy-grid">
+          <div class="philosophy-card">
+            <div class="philosophy-icon">🏙️</div>
+            <h4>Bengaluru Tech Scene</h4>
+            <p>Active participant in Bengaluru's vibrant tech culture, attending developer meetups, hackathons, and discussing generative AI architectures across Koramangala and Indiranagar.</p>
+          </div>
+          <div class="philosophy-card">
+            <div class="philosophy-icon">📚</div>
+            <h4>Paper Reading &amp; Continuous Learning</h4>
+            <p>Regularly dissecting new preprints on RLHF (Direct Preference Optimization), computer vision landmark tracking, and prompt orchestration frameworks.</p>
+          </div>
+          <div class="philosophy-card">
+            <div class="philosophy-icon">🤝</div>
+            <h4>Peer Mentorship</h4>
+            <p>Helping fellow university students debug Python scripts, understand database indexing, and get started with git workflows and open source.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION: ASK SHANMAI AI (INTERACTIVE CHATBOT)
+         ========================================================================== -->
+    <section id="chat-ai" class="reveal">
+      <div class="section-header">
+        <span class="section-eyebrow">02 // Interactive Assistant</span>
+        <h2 class="section-title">Ask Shanmai AI</h2>
+        <p class="section-desc">Have questions about Shanmai's skills, projects, or background? Chat with my interactive digital persona.</p>
+      </div>
+
+      <div class="chat-section-wrapper">
+        <div class="chat-intro">
+          <h3>Curious about my qualifications?</h3>
+          <p>
+            Whether you are a recruiter, engineering manager, or prospective collaborator, you can ask direct questions about my experience at Deccan AI, my university projects, or why I would be an asset to your team.
+          </p>
+
+          <div class="suggested-questions-title">Click to ask instantly:</div>
+          <div class="suggested-questions">
+            <button class="q-btn" onclick="sendQuickQuestion('Who is Shanmai in 3 sentences?')">
+              <span>💡 Who is Shanmai in 3 sentences?</span>
+              <span>→</span>
+            </button>
+            <button class="q-btn" onclick="sendQuickQuestion('What did Shanmai do at Deccan AI on Action Extensions V2?')">
+              <span>🧠 Tell me about the Deccan AI RLHF role</span>
+              <span>→</span>
+            </button>
+            <button class="q-btn" onclick="sendQuickQuestion('Why hire Shanmai for an engineering internship?')">
+              <span>💼 Why hire Shanmai for an internship?</span>
+              <span>→</span>
+            </button>
+            <button class="q-btn" onclick="sendQuickQuestion('How does the Smart Mirror protect children\'s privacy?')">
+              <span>🪞 How does the Smart Mirror preserve privacy?</span>
+              <span>→</span>
+            </button>
+            <button class="q-btn" onclick="sendQuickQuestion('How can I contact or interview Shanmai?')">
+              <span>✉ How do I interview Shanmai?</span>
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Chat Window -->
+        <div class="chat-window">
+          <div class="chat-header">
+            <div class="chat-header-user">
+              <div class="avatar-mini">KS</div>
+              <div>
+                <strong style="font-size:0.9rem; display:block;">Shanmai's Portfolio AI</strong>
+                <span style="font-size:0.72rem; color:var(--accent2); display:flex; align-items:center; gap:4px;">
+                  <span class="chat-status-dot"></span> Online &amp; Ready
+                </span>
+              </div>
+            </div>
+            <button class="badge" onclick="resetChat()" style="cursor:pointer;">Reset</button>
+          </div>
+
+          <div class="chat-messages" id="chatMessages">
+            <div class="chat-bubble bubble-bot">
+              👋 Hey there! I'm Shanmai's interactive portfolio assistant. Click any question on the left or type your own question below to learn more about my projects, background, and availability!
+            </div>
+          </div>
+
+          <form class="chat-input-bar" onsubmit="handleChatSubmit(event)">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Ask anything about Shanmai..." autocomplete="off">
+            <button type="submit" class="chat-send-btn" aria-label="Send message">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION: PROJECTS WITH INTERACTIVE SIMULATORS
+         ========================================================================== -->
+    <section id="projects" class="reveal">
+      <div class="section-header">
+        <span class="section-eyebrow">03 // Portfolio &amp; Demos</span>
+        <h2 class="section-title">Featured Projects &amp; Live Simulators</h2>
+        <p class="section-desc">Explore full-stack platforms, AI chatbots, and test live interactive simulations right in your browser.</p>
+      </div>
+
+      <!-- Filter & Search Bar -->
+      <div class="filter-bar">
+        <div class="filter-chips" role="tablist">
+          <button class="filter-chip active" data-filter="all">All Projects (4)</button>
+          <button class="filter-chip" data-filter="ai">AI &amp; Vision</button>
+          <button class="filter-chip" data-filter="web">Web Portals</button>
+          <button class="filter-chip" data-filter="cloud">Firebase &amp; Realtime</button>
+        </div>
+
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="projectSearch" placeholder="Search by tech or keyword...">
+        </div>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="projects-grid" id="projectsContainer">
+        <!-- Project 1: PULSE+ -->
+        <article class="project-card" data-category="ai web" data-title="pulse+ smart hospital management system ai chatbot portals">
+          <div class="project-top">
+            <div class="project-icon-row">
+              <div class="project-icon">🏥</div>
+              <span class="project-category-tag">Healthcare &amp; AI</span>
+            </div>
+            <h3 class="project-title">PULSE+</h3>
+            <p class="project-desc">
+              Smart Hospital Management System featuring segregated Admin, Doctor, and Patient portals, automated appointment triage, and an intelligent conversational AI chatbot for instant patient assistance.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Web App</span>
+              <span class="tag">AI Chatbot</span>
+              <span class="tag">Portals</span>
+              <span class="tag">Scheduling</span>
+              <span class="tag">SQL</span>
+            </div>
+          </div>
+          <div class="project-footer">
+            <button class="project-btn" onclick="openProjectModal('pulse')">
+              <span>View Architecture</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+            <button class="live-sim-btn" onclick="openSimulator('pulse')">⚡ Try Triage Demo</button>
+          </div>
+        </article>
+
+        <!-- Project 2: Mainaya -->
+        <article class="project-card" data-category="web cloud" data-title="mainaya online appointment management system faculty firebase auth">
+          <div class="project-top">
+            <div class="project-icon-row">
+              <div class="project-icon">📅</div>
+              <span class="project-category-tag">Campus &amp; Cloud</span>
+            </div>
+            <h3 class="project-title">Mainaya</h3>
+            <p class="project-desc">
+              Online faculty appointment management platform engineered for university campuses. Enables students to browse faculty availability, request slots, and synchronize calendars with real-time Firebase authentication.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Firebase Auth</span>
+              <span class="tag">Realtime DB</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">Calendar Sync</span>
+            </div>
+          </div>
+          <div class="project-footer">
+            <button class="project-btn" onclick="openProjectModal('mainaya')">
+              <span>View Architecture</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+            <button class="live-sim-btn" onclick="openSimulator('mainaya')">⚡ Try Slot Booking</button>
+          </div>
+        </article>
+
+        <!-- Project 3: PeTrack -->
+        <article class="project-card" data-category="web" data-title="petrack pet tracking system qr badges pet profiles owner privacy control">
+          <div class="project-top">
+            <div class="project-icon-row">
+              <div class="project-icon">🐾</div>
+              <span class="project-category-tag">IoT &amp; Privacy</span>
+            </div>
+            <h3 class="project-title">PeTrack</h3>
+            <p class="project-desc">
+              Smart pet identification system that generates unique dynamic QR badges. Empowers pet owners with granular privacy controls, allowing them to instantly update contact details and medical notes visible upon scan.
+            </p>
+            <div class="project-tags">
+              <span class="tag">QR Engine</span>
+              <span class="tag">Dynamic Profiles</span>
+              <span class="tag">Privacy Control</span>
+              <span class="tag">Mobile-Ready</span>
+            </div>
+          </div>
+          <div class="project-footer">
+            <button class="project-btn" onclick="openProjectModal('petrack')">
+              <span>View Architecture</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+            <button class="live-sim-btn" onclick="openSimulator('petrack')">⚡ Try QR Privacy Demo</button>
+          </div>
+        </article>
+
+        <!-- Project 4: Smart Mirror -->
+        <article class="project-card" data-category="ai" data-title="smart mirror ai-powered pose estimation python opencv mediapipe child activity">
+          <div class="project-top">
+            <div class="project-icon-row">
+              <div class="project-icon">🪞</div>
+              <span class="project-category-tag">Computer Vision</span>
+            </div>
+            <h3 class="project-title">Smart Mirror</h3>
+            <p class="project-desc">
+              AI-powered edge mirror interface that monitors and recognizes children’s physical activities and posture in real time via skeletal pose estimation, built with an edge-first privacy architecture that avoids raw video storage.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">OpenCV</span>
+              <span class="tag">MediaPipe</span>
+              <span class="tag">Edge AI</span>
+            </div>
+          </div>
+          <div class="project-footer">
+            <button class="project-btn" onclick="openProjectModal('mirror')">
+              <span>View Architecture</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+            <button class="live-sim-btn" onclick="openSimulator('mirror')">⚡ Try Pose Tracker</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION: EXPERIENCE & EDUCATION TIMELINE
+         ========================================================================== -->
+    <section id="experience" class="reveal">
+      <div class="section-header">
+        <span class="section-eyebrow">04 // Timeline</span>
+        <h2 class="section-title">Experience &amp; Education</h2>
+        <p class="section-desc">My academic foundation and industry engagement.</p>
+      </div>
+
+      <div class="timeline">
+        <!-- Item 1: Deccan AI -->
+        <div class="timeline-item">
+          <div class="timeline-date">March 2025 – Present</div>
+          <h3 class="timeline-title">AI Expert (Freelance)</h3>
+          <span class="timeline-org">Deccan AI by Soul AI (AIWhisperers Technologies India Pvt. Ltd.)</span>
+          <ul class="timeline-duties">
+            <li>Contributed to frontier LLM alignment on the high-priority <strong>Action Extensions V2</strong> initiative.</li>
+            <li>Evaluated and audited AI-generated model responses for factual grounding, logical consistency, and user prompt adherence.</li>
+            <li>Ranked competing LLM model outputs against strict multi-dimensional quality rubrics.</li>
+            <li>Supplied high-density Reinforcement Learning from Human Feedback (RLHF) and direct corrective text to enhance generative AI accuracy.</li>
+            <li>Consistently achieved high agreement benchmarks and maintained on-time sprint deliveries.</li>
+          </ul>
+        </div>
+
+        <!-- Item 2: B.Tech ISE -->
+        <div class="timeline-item">
+          <div class="timeline-date">2024 – Present</div>
+          <h3 class="timeline-title">B.Tech in Information Sciences Engineering</h3>
+          <span class="timeline-org">M S Ramaiah University of Applied Sciences, Bengaluru</span>
+          <ul class="timeline-duties">
+            <li>Core coursework in Data Structures &amp; Algorithms, Object-Oriented Programming, Database Management Systems (SQL), Operating Systems, and Software Engineering.</li>
+            <li>Hands-on laboratory projects building scalable web applications and exploring modern computer vision architectures.</li>
+          </ul>
+        </div>
+
+        <!-- Item 3: 12th Grade -->
+        <div class="timeline-item">
+          <div class="timeline-date">2023 – 2024</div>
+          <h3 class="timeline-title">Higher Secondary Education (12th Grade)</h3>
+          <span class="timeline-org">Pragathi The School, Bengaluru</span>
+          <ul class="timeline-duties">
+            <li>Focused in Mathematics, Physics, Chemistry, and Computer Science foundations.</li>
+          </ul>
+        </div>
+
+        <!-- Item 4: 10th Grade -->
+        <div class="timeline-item">
+          <div class="timeline-date">2021 – 2022</div>
+          <h3 class="timeline-title">Secondary School Certificate (10th Grade)</h3>
+          <span class="timeline-org">Army Public School, Bengaluru</span>
+          <ul class="timeline-duties">
+            <li>Graduated with academic distinction; actively participated in school science competitions and tech clubs.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION: SKILLS WITH ANIMATED METRICS
+         ========================================================================== -->
+    <section id="skills" class="reveal">
+      <div class="section-header">
+        <span class="section-eyebrow">05 // Capabilities</span>
+        <h2 class="section-title">Technical Skills</h2>
+        <p class="section-desc">Core competencies across programming, AI tuning, and development stacks.</p>
+      </div>
+
+      <!-- Skills Progress Bars -->
+      <div class="skills-panel" id="skillsBarContainer">
+        <div class="skill-bar-card">
+          <div class="skill-bar-top">
+            <span>Prompt Engineering &amp; Evaluation</span>
+            <span style="color:var(--accent2); font-family:var(--font-mono)">90%</span>
+          </div>
+          <div class="skill-track">
+            <div class="skill-fill" data-percent="90" style="--w:90%"></div>
+          </div>
+        </div>
+
+        <div class="skill-bar-card">
+          <div class="skill-bar-top">
+            <span>Python Development</span>
+            <span style="color:var(--accent2); font-family:var(--font-mono)">85%</span>
+          </div>
+          <div class="skill-track">
+            <div class="skill-fill" data-percent="85" style="--w:85%"></div>
+          </div>
+        </div>
+
+        <div class="skill-bar-card">
+          <div class="skill-bar-top">
+            <span>HTML5 / CSS3 / Modern JavaScript</span>
+            <span style="color:var(--accent2); font-family:var(--font-mono)">80%</span>
+          </div>
+          <div class="skill-track">
+            <div class="skill-fill" data-percent="80" style="--w:80%"></div>
+          </div>
+        </div>
+
+        <div class="skill-bar-card">
+          <div class="skill-bar-top">
+            <span>SQL &amp; Relational Databases</span>
+            <span style="color:var(--accent2); font-family:var(--font-mono)">75%</span>
+          </div>
+          <div class="skill-track">
+            <div class="skill-fill" data-percent="75" style="--w:75%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skill Tag Chips -->
+      <div class="chips-cloud">
+        <span class="chip" onclick="showSkillInfo('Python')">🐍 Python</span>
+        <span class="chip" onclick="showSkillInfo('Prompt Engineering')">🎯 Prompt Engineering</span>
+        <span class="chip" onclick="showSkillInfo('Prompt Evaluation')">🔬 Prompt Evaluation</span>
+        <span class="chip" onclick="showSkillInfo('RLHF')">🔄 RLHF (Human Feedback)</span>
+        <span class="chip" onclick="showSkillInfo('AI Ranking')">⚖️ AI Output Ranking</span>
+        <span class="chip" onclick="showSkillInfo('SQL')">🗄️ SQL</span>
+        <span class="chip" onclick="showSkillInfo('JavaScript')">⚡ JavaScript (ES6+)</span>
+        <span class="chip" onclick="showSkillInfo('Web')">🎨 HTML5 &amp; CSS3</span>
+        <span class="chip" onclick="showSkillInfo('Firebase')">🔥 Firebase (Auth &amp; DB)</span>
+        <span class="chip" onclick="showSkillInfo('OpenCV')">👁️ OpenCV</span>
+        <span class="chip" onclick="showSkillInfo('MediaPipe')">📐 MediaPipe Pose</span>
+        <span class="chip" onclick="showSkillInfo('Git')">🌿 Git &amp; GitHub</span>
+        <span class="chip" onclick="showSkillInfo('HealthTech')">🩺 HealthTech Systems</span>
+        <span class="chip" onclick="showSkillInfo('Privacy')">🛡️ Data Privacy by Design</span>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION: CERTIFICATIONS SHOWCASE
+         ========================================================================== -->
+    <section id="certs" class="reveal">
+      <div class="section-header">
+        <span class="section-eyebrow">06 // Credentials</span>
+        <h2 class="section-title">Certifications</h2>
+        <p class="section-desc">Validated knowledge and ongoing professional credentials.</p>
+      </div>
+
+      <div class="certs-grid">
+        <div class="cert-card">
+          <div class="cert-badge-icon">🎖️</div>
+          <div class="cert-body">
+            <h3>AI Expert Acknowledgement</h3>
+            <div class="cert-issuer">Deccan AI by Soul AI</div>
+            <p class="cert-desc">Formal recognition for excellence in LLM response auditing, quality ranking, and RLHF on Action Extensions V2.</p>
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-badge-icon">📜</div>
+          <div class="cert-body">
+            <h3>Python for Data Science</h3>
+            <div class="cert-issuer">IBM</div>
+            <p class="cert-desc">Data analysis paradigms, data manipulation with Pandas &amp; NumPy, and foundational machine learning techniques.</p>
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-badge-icon">📊</div>
+          <div class="cert-body">
+            <h3>Data Visualization with Python</h3>
+            <div class="cert-issuer">IBM</div>
+            <p class="cert-desc">Creating impactful scientific visualizations, statistical plots, and exploratory data diagrams with Matplotlib &amp; Seaborn.</p>
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-badge-icon">💻</div>
+          <div class="cert-body">
+            <h3>Introduction to Python Programming</h3>
+            <div class="cert-issuer">Infosys Springboard</div>
+            <p class="cert-desc">Comprehensive fundamentals of algorithmic problem solving, object-oriented concepts, and clean coding best practices.</p>
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-badge-icon">⚙️</div>
+          <div class="cert-body">
+            <h3>TechA DevOps Engineer Certification</h3>
+            <div class="cert-issuer">TechA</div>
+            <p class="cert-desc">Continuous integration, deployment workflows, source control management, and cloud infrastructure pipelines.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION: CONTACT
+         ========================================================================== -->
+    <section id="contact" class="reveal">
+      <div class="section-header">
+        <span class="section-eyebrow">07 // Connect</span>
+        <h2 class="section-title">Let’s Collaborate</h2>
+        <p class="section-desc">Always interested in internship opportunities, software engineering roles, and AI research projects.</p>
+      </div>
+
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <div>
+            <h3 style="font-size:1.35rem; margin-bottom:10px;">Get in Touch</h3>
+            <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.6;">
+              Whether you are looking for an engineer with hands-on AI evaluation experience, or have an exciting project in need of a developer, my inbox is always open.
+            </p>
+
+            <div class="contact-time-card">
+              <div class="time-header">
+                <span class="status-beacon"></span>
+                <span>Current Time in Bengaluru (IST)</span>
+              </div>
+              <div class="time-val" id="bengaluruTime">--:--:-- IST</div>
+            </div>
+          </div>
+
+          <div class="contact-direct-links">
+            <a class="contact-link-row" href="mailto:shanmaireddy.2006@gmail.com">
+              <span class="contact-link-icon">✉</span>
+              <div>
+                <span style="font-size:0.75rem; color:var(--text-sub); display:block;">DIRECT EMAIL</span>
+                <strong style="font-size:0.95rem;">shanmaireddy.2006@gmail.com</strong>
+              </div>
+            </a>
+
+            <a class="contact-link-row" href="https://linkedin.com/in/shanmaireddy/" target="_blank" rel="noopener">
+              <span class="contact-link-icon">💼</span>
+              <div>
+                <span style="font-size:0.75rem; color:var(--text-sub); display:block;">PROFESSIONAL NETWORK</span>
+                <strong style="font-size:0.95rem;">linkedin.com/in/shanmaireddy</strong>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <form class="contact-form" id="contactForm" onsubmit="handleContactSubmit(event)">
+          <div class="form-group">
+            <label for="contactName">Your Name</label>
+            <input type="text" id="contactName" class="form-control" placeholder="Jane Doe" required>
+          </div>
+
+          <div class="form-group">
+            <label for="contactEmail">Your Email</label>
+            <input type="email" id="contactEmail" class="form-control" placeholder="jane@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="contactTopic">Inquiry Type</label>
+            <select id="contactTopic" class="form-control" style="background:var(--bg)">
+              <option value="Internship / Full-time Role">Internship / Full-time Opportunity</option>
+              <option value="AI Evaluation Project">AI Evaluation / RLHF Project</option>
+              <option value="Web Development Collaboration">Web Development Collaboration</option>
+              <option value="General Conversation">Saying Hello!</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="contactMsg">Message</label>
+            <textarea id="contactMsg" class="form-control" rows="4" placeholder="Tell me about your project, idea, or role..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="margin-top:8px;">
+            <span>Send Message</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       MODAL DIALOG (PROJECT DEEP DIVES & SIMULATORS)
+       ========================================================================== -->
+  <div class="modal-backdrop" id="projectModalBackdrop" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-dialog" role="dialog" aria-modal="true">
+      <button class="modal-close" onclick="closeProjectModal()" aria-label="Close dialog">&times;</button>
+      <div id="modalContent">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       RESUME VIEWER MODAL
+       ========================================================================== -->
+  <div class="modal-backdrop" id="resumeModalBackdrop" onclick="closeResumeModalOnBackdrop(event)">
+    <div class="resume-modal-dialog" role="dialog" aria-modal="true">
+      <button class="modal-close" onclick="closeResumeModal()" aria-label="Close dialog">&times;</button>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <h2 style="font-size:1.45rem; font-weight:800; margin:0;">📄 K Shanmai · Quick Resume</h2>
+        <button class="btn btn-primary btn-sm" onclick="window.print()">Print / Save PDF</button>
+      </div>
+
+      <div class="resume-paper">
+        <div style="border-bottom:2px solid var(--accent); padding-bottom:12px; margin-bottom:18px;">
+          <h1 style="font-size:1.6rem; font-weight:900; margin:0;">K SHANMAI</h1>
+          <p style="color:var(--accent2); font-weight:600; font-size:0.95rem; margin:2px 0;">B.Tech Information Sciences Engineering · AI Evaluation Specialist</p>
+          <div style="font-size:0.82rem; color:var(--text-muted); display:flex; gap:14px; flex-wrap:wrap; margin-top:6px;">
+            <span>📍 Bengaluru, Karnataka</span>
+            <span>✉ shanmaireddy.2006@gmail.com</span>
+            <span>🔗 linkedin.com/in/shanmaireddy</span>
+          </div>
+        </div>
+
+        <h4 style="color:var(--accent); font-size:0.95rem; text-transform:uppercase; margin-bottom:8px;">Education</h4>
+        <div style="margin-bottom:14px;">
+          <strong>B.Tech in Information Sciences Engineering</strong> — M S Ramaiah University of Applied Sciences, Bengaluru (2024–Present)<br>
+          <small style="color:var(--text-muted);">Key Coursework: Data Structures, Database Systems (SQL), OOP, Computer Vision</small>
+        </div>
+        <div style="margin-bottom:18px;">
+          <strong>12th Grade (Senior Secondary)</strong> — Pragathi The School, Bengaluru (2023–2024)<br>
+          <strong>10th Grade (Secondary School)</strong> — Army Public School, Bengaluru (2021–2022)
+        </div>
+
+        <h4 style="color:var(--accent); font-size:0.95rem; text-transform:uppercase; margin-bottom:8px;">Experience</h4>
+        <div style="margin-bottom:18px;">
+          <strong>AI Expert (Freelance)</strong> — Deccan AI by Soul AI (March 2025 – Present)<br>
+          <ul style="padding-left:18px; margin-top:4px; font-size:0.85rem; color:var(--text-muted);">
+            <li>Evaluated multi-turn LLM reasoning on the Action Extensions V2 project.</li>
+            <li>Ranked generative AI outputs against rigorous accuracy, helpfulness, and safety guidelines.</li>
+            <li>Provided human feedback (RLHF) and direct corrective text to fine-tune model alignment.</li>
+          </ul>
+        </div>
+
+        <h4 style="color:var(--accent); font-size:0.95rem; text-transform:uppercase; margin-bottom:8px;">Selected Projects</h4>
+        <div style="font-size:0.85rem; color:var(--text-muted); display:flex; flex-direction:column; gap:8px;">
+          <div><strong style="color:var(--text);">PULSE+:</strong> Smart Hospital Management System with triage AI chatbot, Admin, Doctor &amp; Patient portals.</div>
+          <div><strong style="color:var(--text);">PeTrack:</strong> Smart Pet QR Identification platform with granular owner privacy controls.</div>
+          <div><strong style="color:var(--text);">Smart Mirror:</strong> Privacy-first edge child activity detection using Python, OpenCV, and MediaPipe Pose.</div>
+          <div><strong style="color:var(--text);">Mainaya:</strong> Faculty appointment scheduling portal backed by Firebase Auth &amp; Realtime Database.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       FOLIOFORGE 2026 COMPETITION TECH & AI DISCLOSURE MODAL
+       ========================================================================== -->
+  <div class="modal-backdrop" id="disclosureModalBackdrop" onclick="closeDisclosureModalOnBackdrop(event)">
+    <div class="modal-dialog" role="dialog" aria-modal="true" style="max-width: 660px;">
+      <button class="modal-close" onclick="closeDisclosureModal()" aria-label="Close dialog">&times;</button>
+      <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
+        <div style="font-size:2rem; width:52px; height:52px; border-radius:14px; background:rgba(var(--accent-rgb),0.15); border:1px solid var(--accent); display:flex; align-items:center; justify-content:center;">🏆</div>
+        <div>
+          <span class="badge badge-green" style="margin-bottom:4px;">Official Submission Compliance</span>
+          <h2 style="font-size:1.35rem; font-weight:800; margin:0;">FolioForge 2026 · Project Disclosure</h2>
+        </div>
+      </div>
+
+      <div style="background:var(--bg); border:1px solid var(--line); border-radius:12px; padding:18px; margin-bottom:18px; font-size:0.88rem; line-height:1.6;">
+        <p style="margin-bottom:10px;">
+          <strong>Participant:</strong> K Shanmai (Individual Participation)<br>
+          <strong>Institution:</strong> M S Ramaiah University of Applied Sciences, Bengaluru<br>
+          <strong>Competition:</strong> FolioForge 2026 Personal Portfolio Competition (7 Nov 2026)
+        </p>
+        <hr style="border:none; border-top:1px solid var(--line); margin:12px 0;">
+        <h4 style="color:var(--accent2); font-size:0.92rem; margin-bottom:6px;">🛠️ Technologies, Frameworks &amp; Tools Used:</h4>
+        <ul style="padding-left:18px; color:var(--text-muted); margin-bottom:14px;">
+          <li><strong>Frontend Core:</strong> Semantic HTML5, CSS3 Custom Properties (CSS Variables), Responsive Flexbox &amp; Grid.</li>
+          <li><strong>Interaction Engine:</strong> Pure Vanilla JavaScript (ES6+) with zero bloated runtime dependencies for lightning-fast performance.</li>
+          <li><strong>Web Standards &amp; APIs:</strong> Web Audio API (synthesized interaction audio), HTML5 Canvas 2D (constellation particle network &amp; confetti physics), IntersectionObserver API, Clipboard API.</li>
+          <li><strong>Typography:</strong> Google Fonts (Inter &amp; JetBrains Mono).</li>
+        </ul>
+
+        <h4 style="color:var(--accent); font-size:0.92rem; margin-bottom:6px;">🤖 AI Tools &amp; Technologies Disclosure (Per Competition Rule):</h4>
+        <p style="color:var(--text-muted); margin-bottom:0;">
+          In strict compliance with the competition guideline permitting AI tools with proper disclosure: Google Antigravity &amp; Gemini were utilized for rapid layout planning, accessibility audits, and copy refinement. All project code architectures (PULSE+, PeTrack, Smart Mirror, Mainaya), custom RLHF sandbox logic, pose detection simulations, and technical evaluations represent K Shanmai's own authentic engineering work.
+        </p>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:0.75rem; color:var(--text-sub);">Submission Date: 7 Nov 2026</span>
+        <button class="btn btn-primary btn-sm" onclick="closeDisclosureModal()">Close Disclosure</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       COMMAND PALETTE (CTRL+K)
+       ========================================================================== -->
+  <div class="cmd-palette" id="cmdPalette" onclick="closeCmdPaletteOnBackdrop(event)">
+    <div class="cmd-box" role="dialog" aria-modal="true">
+      <div class="cmd-input-row">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="cmdInput" class="cmd-input" placeholder="Type a section name, action, or command..." autocomplete="off">
+        <span class="kbd-key">ESC</span>
+      </div>
+      <div class="cmd-results" id="cmdResults">
+        <!-- Results injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Pill -->
+  <div class="toast-pill" id="toastPill">
+    <span id="toastIcon">📋</span>
+    <span id="toastMessage">Copied to clipboard!</span>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div>
+        <strong>K Shanmai</strong> · Designed &amp; Developed for <strong>FolioForge 2026</strong> · Individual Participation
+      </div>
+      <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+        <button class="btn btn-secondary btn-sm" onclick="openDisclosureModal()" style="padding:4px 12px; font-size:0.75rem;">
+          <span>🛠️ Tech &amp; AI Tools Disclosure</span>
+        </button>
+        <span>Bengaluru, India · 7 Nov 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       JAVASCRIPT LOGIC
+       ========================================================================== */ -->
+  <script>
+    (function () {
+      'use strict';
+
+      const prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const root = document.documentElement;
+      let soundEnabled = false;
+
+      // ------------------------------------------------------------------------
+      // Synthesizer Audio (Web Audio API - Opt-in)
+      // ------------------------------------------------------------------------
+      let audioCtx = null;
+      function playTone(freq, type, duration) {
+        if (!soundEnabled || prefersReducedMotion) return;
+        try {
+          if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = type || 'sine';
+          osc.frequency.setValueAtTime(freq || 520, audioCtx.currentTime);
+          gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + (duration || 0.15));
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start();
+          osc.stop(audioCtx.currentTime + (duration || 0.15));
+        } catch (e) {}
+      }
+
+      document.getElementById('soundToggle').onclick = function () {
+        soundEnabled = !soundEnabled;
+        document.getElementById('soundIcon').textContent = soundEnabled ? '🔊' : '🔇';
+        showToast(soundEnabled ? 'UI Sound Effects Enabled' : 'UI Sound Effects Muted', '🔔');
+        if (soundEnabled) playTone(660, 'sine', 0.2);
+      };
+
+      // ------------------------------------------------------------------------
+      // Theme Toggle with SVG Icon Sync
+      // ------------------------------------------------------------------------
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
+
+      function updateThemeIcon(isDark) {
+        if (isDark) {
+          themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+        } else {
+          themeIcon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
+        }
+      }
+
+      themeToggle.onclick = function () {
+        playTone(480, 'triangle', 0.1);
+        const currentTheme = root.getAttribute('data-theme') || 'dark';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', newTheme);
+        updateThemeIcon(newTheme === 'dark');
+        showToast(newTheme === 'dark' ? 'Dark theme active' : 'Light theme active', '◐');
+      };
+      updateThemeIcon(true);
+
+      // Mobile Menu
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileNav = document.getElementById('mobileNav');
+      mobileMenuBtn.onclick = function () {
+        mobileNav.classList.toggle('open');
+      };
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.onclick = () => mobileNav.classList.remove('open');
+      });
+
+      // ------------------------------------------------------------------------
+      // Typing Effect (Hero)
+      // ------------------------------------------------------------------------
+      const roles = [
+        "smart web applications",
+        "RLHF evaluation pipelines",
+        "AI-powered computer vision tools",
+        "privacy-first architectures"
+      ];
+      let rIdx = 0, charIdx = 0, isDeleting = false;
+      const typeEl = document.getElementById('typeWord');
+
+      function typeTick() {
+        if (!typeEl) return;
+        const currentRole = roles[rIdx];
+        typeEl.textContent = currentRole.slice(0, charIdx);
+
+        if (!isDeleting && charIdx === currentRole.length) {
+          isDeleting = true;
+          setTimeout(typeTick, 1800);
+          return;
+        }
+        if (isDeleting && charIdx === 0) {
+          isDeleting = false;
+          rIdx = (rIdx + 1) % roles.length;
+        }
+
+        charIdx += isDeleting ? -1 : 1;
+        setTimeout(typeTick, isDeleting ? 35 : 75);
+      }
+
+      if (prefersReducedMotion) {
+        if (typeEl) typeEl.textContent = roles[0];
+      } else {
+        typeTick();
+      }
+
+      // ------------------------------------------------------------------------
+      // Shanmai Persona Switcher (Hero Pills)
+      // ------------------------------------------------------------------------
+      const personas = [
+        {
+          title: "B.Tech Information Sciences Engineering Student",
+          quote: "Curious, ambitious, and building practical systems at M S Ramaiah University of Applied Sciences."
+        },
+        {
+          title: "Deccan AI / Soul AI Verified Evaluator",
+          quote: "Auditing multi-turn LLM reasoning, scoring accuracy rubrics, and generating RLHF rewards on Action Extensions V2."
+        },
+        {
+          title: "Full-Stack System Architect",
+          quote: "Designing role-segregated portals, real-time Firebase databases, and automated scheduling engines."
+        },
+        {
+          title: "Privacy-by-Design Technologist",
+          quote: "Processing camera frames locally on edge devices and giving users granular control over their sensitive data."
+        }
+      ];
+
+      window.switchPersona = function (idx) {
+        playTone(600, 'sine', 0.08);
+        document.querySelectorAll('.persona-pill').forEach((pill, i) => {
+          pill.classList.toggle('active', i === idx);
+        });
+        showToast(personas[idx].title, '✨');
+      };
+
+      // ------------------------------------------------------------------------
+      // Shanmai Audio Welcome Greeting
+      // ------------------------------------------------------------------------
+      let isPlayingGreeting = false;
+      window.playVoiceGreeting = function () {
+        if (isPlayingGreeting) return;
+        isPlayingGreeting = true;
+        const bars = document.getElementById('waveBars');
+        const text = document.getElementById('voiceGreetingText');
+        bars.classList.add('active');
+        text.textContent = '🔊 "Hey, I\'m Shanmai! Welcome to my portfolio..."';
+
+        // Play musical welcome arpeggio
+        [440, 554, 659, 880].forEach((freq, idx) => {
+          setTimeout(() => {
+            playTone(freq, 'sine', 0.35);
+          }, idx * 160);
+        });
+
+        setTimeout(() => {
+          bars.classList.remove('active');
+          text.textContent = '▶ Listen to Shanmai\'s 10s audio welcome';
+          isPlayingGreeting = false;
+        }, 4000);
+      };
+
+      // ------------------------------------------------------------------------
+      // Live Bengaluru IST Clock
+      // ------------------------------------------------------------------------
+      function updateBengaluruClock() {
+        const timeEl = document.getElementById('bengaluruTime');
+        if (!timeEl) return;
+        const options = {
+          timeZone: 'Asia/Kolkata',
+          hour12: true,
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        };
+        const formatter = new Intl.DateTimeFormat([], options);
+        timeEl.textContent = formatter.format(new Date()) + ' IST';
+      }
+      setInterval(updateBengaluruClock, 1000);
+      updateBengaluruClock();
+
+      // ------------------------------------------------------------------------
+      // Toast & Email Copy
+      // ------------------------------------------------------------------------
+      function showToast(msg, icon) {
+        const toast = document.getElementById('toastPill');
+        const toastMsg = document.getElementById('toastMessage');
+        const toastIcon = document.getElementById('toastIcon');
+        toastMsg.textContent = msg;
+        if (icon) toastIcon.textContent = icon;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+      }
+
+      window.copyEmail = function () {
+        const email = 'shanmaireddy.2006@gmail.com';
+        navigator.clipboard.writeText(email).then(() => {
+          playTone(880, 'sine', 0.15);
+          showToast('Email copied to clipboard!', '📋');
+        }).catch(() => {
+          showToast('Email: shanmaireddy.2006@gmail.com', '✉');
+        });
+      };
+
+      const heroEmailBtn = document.getElementById('heroCopyEmailBtn');
+      if (heroEmailBtn) heroEmailBtn.onclick = window.copyEmail;
+
+      // ------------------------------------------------------------------------
+      // Console Card Tabs & RLHF Actions
+      // ------------------------------------------------------------------------
+      const consoleTabs = document.querySelectorAll('.console-tab');
+      consoleTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          playTone(600, 'sine', 0.08);
+          consoleTabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          const target = tab.dataset.tab;
+          document.querySelectorAll('.console-tab-content').forEach(c => c.style.display = 'none');
+          const activeContent = document.getElementById(target);
+          if (activeContent) activeContent.style.display = 'block';
+        });
+      });
+
+      window.selectModel = function (model) {
+        playTone(550, 'sine', 0.08);
+        const cardA = document.getElementById('modelCardA');
+        const cardB = document.getElementById('modelCardB');
+        if (model === 'A') {
+          cardA.classList.add('selected');
+          cardB.classList.remove('selected');
+        } else {
+          cardB.classList.add('selected');
+          cardA.classList.remove('selected');
+        }
+      };
+
+      window.submitRlhfRating = function () {
+        playTone(800, 'triangle', 0.2);
+        const status = document.getElementById('rlhfFeedbackStatus');
+        const btn = document.getElementById('submitRlhfBtn');
+        status.style.display = 'inline-flex';
+        btn.textContent = 'Feedback Recorded!';
+        btn.style.background = '#10b981';
+        showToast('RLHF Feedback Dispatched to Model Alignment Buffer!', '✨');
+        triggerConfetti();
+        setTimeout(() => {
+          btn.textContent = 'Submit RLHF Feedback';
+          btn.style.background = '';
+        }, 3000);
+      };
+
+      window.runCodeDemo = function () {
+        playTone(700, 'sine', 0.12);
+        const output = document.getElementById('termOutput');
+        const btn = document.getElementById('runCodeBtn');
+        btn.disabled = true;
+        btn.innerHTML = '<span>Processing...</span>';
+        output.style.display = 'none';
+        setTimeout(() => {
+          output.style.display = 'block';
+          btn.disabled = false;
+          btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg><span>Execute Script</span>';
+          playTone(920, 'sine', 0.2);
+        }, 600);
+      };
+
+      // 3D Perspective Tilt for Console
+      const consoleCard = document.getElementById('console3d');
+      if (consoleCard && !prefersReducedMotion) {
+        consoleCard.addEventListener('mousemove', function (e) {
+          const rect = consoleCard.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          consoleCard.style.transform = `perspective(900px) rotateY(${x * 12}deg) rotateX(${-y * 12}deg) translateY(-4px)`;
+        });
+        consoleCard.addEventListener('mouseleave', function () {
+          consoleCard.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg) translateY(0)';
+        });
+      }
+
+      // ------------------------------------------------------------------------
+      // Interactive Terminal CLI Easter Egg
+      // ------------------------------------------------------------------------
+      const cliHistory = document.getElementById('cliHistory');
+      const cliInputField = document.getElementById('cliInputField');
+
+      function executeCommand(cmd) {
+        cmd = cmd.toLowerCase().trim();
+        const p = document.createElement('div');
+        p.style.marginTop = '4px';
+        p.innerHTML = `<span style="color:var(--accent2)">shanmai@folio:~$</span> ${cmd}`;
+        cliHistory.appendChild(p);
+
+        const resp = document.createElement('div');
+        resp.style.color = '#f1f0f9';
+        resp.style.marginBottom = '6px';
+
+        if (cmd === 'whoami') {
+          resp.innerHTML = "K Shanmai: B.Tech Information Sciences Engineering student at MSRUAS Bengaluru & Freelance AI Evaluation Expert with Deccan AI.";
+        } else if (cmd === 'skills') {
+          resp.innerHTML = "Python, RLHF, Prompt Evaluation, OpenCV, MediaPipe, SQL, Firebase, JavaScript, HTML5/CSS3.";
+        } else if (cmd === 'projects') {
+          resp.innerHTML = "• PULSE+ (Hospital Management & AI Chatbot)<br>• PeTrack (Dynamic QR & Privacy Controls)<br>• Smart Mirror (MediaPipe Child Activity Pose Estimation)<br>• Mainaya (Firebase Faculty Booking)";
+        } else if (cmd.includes('hire')) {
+          resp.innerHTML = "🎉 Sudo privilege granted! Shanmai is open for summer internships & engineering roles. Email: shanmaireddy.2006@gmail.com";
+          triggerConfetti();
+        } else if (cmd === 'clear') {
+          cliHistory.innerHTML = "Terminal cleared.<br>";
+          return;
+        } else {
+          resp.innerHTML = `Command not recognized: '${cmd}'. Try: whoami, skills, projects, sudo hire, clear`;
+        }
+
+        cliHistory.appendChild(resp);
+        cliHistory.scrollTop = cliHistory.scrollHeight;
+      }
+
+      window.handleCliSubmit = function (e) {
+        e.preventDefault();
+        const val = cliInputField.value;
+        if (!val) return;
+        executeCommand(val);
+        cliInputField.value = '';
+      };
+
+      window.runQuickCli = function (cmd) {
+        executeCommand(cmd);
+      };
+
+      // ------------------------------------------------------------------------
+      // "Who is Shanmai" Tab Switcher
+      // ------------------------------------------------------------------------
+      window.switchPersonaTab = function (tabId) {
+        playTone(550, 'sine', 0.08);
+        document.querySelectorAll('.p-tab-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('onclick').includes(tabId));
+        });
+        document.getElementById('personaJourney').style.display = (tabId === 'journey') ? 'block' : 'none';
+        document.getElementById('personaPhilosophy').style.display = (tabId === 'philosophy') ? 'block' : 'none';
+        document.getElementById('personaRoutine').style.display = (tabId === 'routine') ? 'block' : 'none';
+        document.getElementById('personaBeyond').style.display = (tabId === 'beyond') ? 'block' : 'none';
+      };
+
+      const routines = [
+        {
+          time: "08:30 AM",
+          title: "ISE Classes & Algorithm Labs at MSRUAS",
+          desc: "Attending morning lectures on Data Structures, Database Systems, and Operating Systems at M S Ramaiah University of Applied Sciences. Engaging in lab experiments and discussing software architectures with peers."
+        },
+        {
+          time: "02:00 PM",
+          title: "Full-Stack Project Development & Debugging",
+          desc: "Working in the campus innovation lab or library. Building out hospital triaging logic for PULSE+, refining Firebase real-time listeners for Mainaya, or training posture estimation thresholds."
+        },
+        {
+          time: "06:30 PM",
+          title: "Deccan AI / Soul AI Evaluation Sprints",
+          desc: "Auditing LLM completions for Action Extensions V2. Rigorously analyzing multi-turn conversations against human guidelines, identifying subtle hallucinations, and logging detailed RLHF feedback."
+        },
+        {
+          time: "10:00 PM",
+          title: "Research Paper Deep Dives & Edge AI Tinkering",
+          desc: "Exploring new machine learning publications, optimizing Python and OpenCV pipelines on edge devices, listening to electronic music, and preparing for upcoming technical challenges."
+        }
+      ];
+
+      window.showRoutine = function (idx) {
+        playTone(600, 'sine', 0.06);
+        document.querySelectorAll('.routine-chip').forEach((c, i) => c.classList.toggle('active', i === idx));
+        const r = routines[idx];
+        document.getElementById('routineTime').textContent = r.time;
+        document.getElementById('routineTitle').textContent = r.title;
+        document.getElementById('routineDesc').textContent = r.desc;
+      };
+
+      // ------------------------------------------------------------------------
+      // "Ask Shanmai AI" Chatbot Logic
+      // ------------------------------------------------------------------------
+      const chatMessages = document.getElementById('chatMessages');
+      const chatInput = document.getElementById('chatInput');
+
+      const botKnowledge = [
+        {
+          keys: ["who is shanmai", "who are you", "summary", "tell me about"],
+          resp: "I am K Shanmai — a B.Tech Information Sciences Engineering student at M S Ramaiah University of Applied Sciences (MSRUAS) in Bengaluru. I combine full-stack engineering with real-world AI evaluation (RLHF) expertise at Deccan AI, creating resilient applications like PULSE+ and privacy-first computer vision tools."
+        },
+        {
+          keys: ["deccan", "soul ai", "rlhf", "action extensions"],
+          resp: "At Deccan AI by Soul AI, I work on the Action Extensions V2 project. My responsibilities include auditing LLM outputs for truthfulness and logical consistency, ranking model responses against multi-criteria quality rubrics, and providing actionable human preference annotations (RLHF) to steer model weights towards zero hallucination."
+        },
+        {
+          keys: ["hire", "internship", "why hire", "strength"],
+          resp: "You should hire Shanmai because I bring a rare combination: rigorous classical software engineering skills (Python, SQL, Firebase, modern web) paired with practical, hands-on experience in frontier AI evaluation and alignment. I build fast, design with privacy in mind, and collaborate with relentless curiosity."
+        },
+        {
+          keys: ["smart mirror", "privacy", "opencv", "mediapipe"],
+          resp: "The Smart Mirror project uses Google MediaPipe Pose and OpenCV in Python to detect children's activities and posture in real time. Crucially, all skeletal frame analysis is computed strictly in RAM on the local edge device — zero raw video frames are ever recorded or transmitted to the cloud."
+        },
+        {
+          keys: ["pulse+", "hospital", "pulse"],
+          resp: "PULSE+ is a comprehensive Hospital Management System designed with segregated portals for Admins, Doctors, and Patients. It includes automated bed allocation, real-time schedule conflict resolution, and an integrated AI triage chatbot that assists patients 24/7."
+        },
+        {
+          keys: ["contact", "email", "interview", "reach"],
+          resp: "You can email Shanmai directly at shanmaireddy.2006@gmail.com, or connect on LinkedIn at linkedin.com/in/shanmaireddy. Shanmai is actively interviewing for Summer 2026 internships and collaborative engineering opportunities!"
+        }
+      ];
+
+      function appendChatMessage(text, isUser) {
+        const bubble = document.createElement('div');
+        bubble.className = `chat-bubble ${isUser ? 'bubble-user' : 'bubble-bot'}`;
+        bubble.textContent = text;
+        chatMessages.appendChild(bubble);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      function answerQuestion(query) {
+        appendChatMessage(query, true);
+        playTone(650, 'sine', 0.1);
+
+        setTimeout(() => {
+          const q = query.toLowerCase();
+          let matched = botKnowledge.find(k => k.keys.some(word => q.includes(word)));
+          let reply = matched ? matched.resp : "That's a great question! Shanmai is a B.Tech ISE student at MSRUAS Bengaluru who specializes in AI evaluation, RLHF, and full-stack software development. Feel free to explore the Projects and Timeline sections, or email shanmaireddy.2006@gmail.com!";
+          appendChatMessage(reply, false);
+          playTone(850, 'sine', 0.15);
+        }, 400);
+      }
+
+      window.sendQuickQuestion = function (q) {
+        answerQuestion(q);
+      };
+
+      window.handleChatSubmit = function (e) {
+        e.preventDefault();
+        const text = chatInput.value.trim();
+        if (!text) return;
+        answerQuestion(text);
+        chatInput.value = '';
+      };
+
+      window.resetChat = function () {
+        chatMessages.innerHTML = `
+          <div class="chat-bubble bubble-bot">
+            👋 Hey there! I'm Shanmai's interactive portfolio assistant. Click any question on the left or type your own question below to learn more about my projects, background, and availability!
+          </div>
+        `;
+      };
+
+      // ------------------------------------------------------------------------
+      // Project Filtering & Live Search
+      // ------------------------------------------------------------------------
+      const filterChips = document.querySelectorAll('.filter-chip');
+      const projectCards = document.querySelectorAll('.project-card');
+      const searchInput = document.getElementById('projectSearch');
+
+      function filterProjects() {
+        const activeChip = document.querySelector('.filter-chip.active');
+        const filterCategory = activeChip ? activeChip.dataset.filter : 'all';
+        const query = (searchInput.value || '').toLowerCase().trim();
+
+        projectCards.forEach(card => {
+          const categoryMatch = filterCategory === 'all' || card.dataset.category.includes(filterCategory);
+          const textMatch = !query || card.dataset.title.toLowerCase().includes(query);
+          card.style.display = (categoryMatch && textMatch) ? 'flex' : 'none';
+        });
+      }
+
+      filterChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          playTone(500, 'sine', 0.06);
+          filterChips.forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+          filterProjects();
+        });
+      });
+
+      if (searchInput) searchInput.addEventListener('input', filterProjects);
+
+      // ------------------------------------------------------------------------
+      // Project Modals & Interactive Simulators
+      // ------------------------------------------------------------------------
+      const modalBackdrop = document.getElementById('projectModalBackdrop');
+      const modalContent = document.getElementById('modalContent');
+
+      window.openProjectModal = function (key) {
+        playTone(600, 'triangle', 0.15);
+        const p = projectDetails[key];
+        if (!p) return;
+        modalContent.innerHTML = `
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
+            <div style="font-size:2.2rem; width:56px; height:56px; border-radius:14px; background:var(--bg); border:1px solid var(--line); display:flex; align-items:center; justify-content:center;">${p.icon}</div>
+            <div>
+              <span class="badge badge-cyan" style="margin-bottom:4px;">${p.category}</span>
+              <h2 style="font-size:1.45rem; font-weight:800; margin:0;">${p.title}</h2>
+            </div>
+          </div>
+          <p style="color:var(--text-muted); font-size:1rem; line-height:1.6; margin-bottom:20px;">${p.summary}</p>
+          <h4 style="font-size:1rem; margin-bottom:10px; color:var(--text);">Key Architectural Highlights:</h4>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:24px;">
+            ${p.highlights.map(h => `<li style="position:relative; padding-left:20px; color:var(--text-muted); font-size:0.92rem;"><span style="position:absolute; left:0; color:var(--accent);">▹</span>${h}</li>`).join('')}
+          </ul>
+          <h4 style="font-size:1rem; margin-bottom:10px; color:var(--text);">Technologies Deployed:</h4>
+          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:26px;">
+            ${p.tech.map(t => `<span class="tag" style="padding:4px 12px; font-size:0.8rem;">${t}</span>`).join('')}
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <button class="btn btn-secondary btn-sm" onclick="openSimulator('${key}')">⚡ Launch Interactive Simulator</button>
+            <button class="btn btn-primary btn-sm" onclick="closeProjectModal()">Close Overview</button>
+          </div>
+        `;
+        modalBackdrop.classList.add('open');
+      };
+
+      window.openSimulator = function (key) {
+        playTone(700, 'triangle', 0.15);
+        if (key === 'petrack') {
+          modalContent.innerHTML = `
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+              <span style="font-size:2rem;">🐾</span>
+              <div>
+                <h3 style="font-size:1.3rem; margin:0;">PeTrack · Live Dynamic QR Privacy Simulator</h3>
+                <small style="color:var(--text-muted)">Toggle owner privacy controls to see the public pet profile adapt live.</small>
+              </div>
+            </div>
+
+            <div class="simulator-container">
+              <h4 style="font-size:0.92rem; margin-bottom:10px; color:var(--accent2);">OWNER PRIVACY DASHBOARD</h4>
+              <div class="sim-toggle-row">
+                <span>Display Owner Phone Number</span>
+                <div class="sim-switch active" id="swPhone" onclick="toggleSimSwitch('swPhone', 'dispPhone')"></div>
+              </div>
+              <div class="sim-toggle-row">
+                <span>Display Medical &amp; Allergy Alert</span>
+                <div class="sim-switch active" id="swMed" onclick="toggleSimSwitch('swMed', 'dispMed')"></div>
+              </div>
+              <div class="sim-toggle-row">
+                <span>Activate Emergency "Lost Pet" Mode</span>
+                <div class="sim-switch" id="swLost" onclick="toggleLostMode()"></div>
+              </div>
+            </div>
+
+            <div style="background:var(--surf); border:2px dashed var(--accent); border-radius:14px; padding:20px; text-align:center;" id="petCardBox">
+              <div style="font-size:3rem; margin-bottom:6px;">🐶</div>
+              <h3 style="font-size:1.3rem; margin-bottom:2px;">Buddy · Golden Retriever</h3>
+              <div class="badge badge-green" id="petStatusBadge" style="margin-bottom:12px;">Normal Status</div>
+              <p id="dispPhone" style="font-size:0.9rem; color:var(--text); margin-bottom:6px;">📞 Owner Contact: +91 98XXX-XXXXX</p>
+              <p id="dispMed" style="font-size:0.85rem; color:#f59e0b; margin-bottom:6px;">⚠️ Medical Alert: Needs daily thyroid medication</p>
+              <div style="margin-top:12px; font-size:0.75rem; color:var(--text-sub);">QR Hash: 8f4a-9b2c · Encrypted Cloud Token</div>
+            </div>
+
+            <div style="margin-top:20px; text-align:right;">
+              <button class="btn btn-primary btn-sm" onclick="closeProjectModal()">Done Testing</button>
+            </div>
+          `;
+        } else if (key === 'pulse') {
+          modalContent.innerHTML = `
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+              <span style="font-size:2rem;">🏥</span>
+              <div>
+                <h3 style="font-size:1.3rem; margin:0;">PULSE+ · Automated Patient Triage Simulator</h3>
+                <small style="color:var(--text-muted)">Select incoming symptoms to watch automated department routing in action.</small>
+              </div>
+            </div>
+
+            <div class="simulator-container">
+              <label style="font-size:0.85rem; font-weight:600; display:block; margin-bottom:8px;">Select Patient Presentation:</label>
+              <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px;">
+                <button class="preset-btn active" onclick="runTriageSim('cardiac')">Severe Chest Pain &amp; SpO2 88</button>
+                <button class="preset-btn" onclick="runTriageSim('fever')">High Fever &amp; Persistent Cough</button>
+                <button class="preset-btn" onclick="runTriageSim('dental')">Routine Dental Checkup</button>
+              </div>
+
+              <div style="background:var(--surf); border:1px solid var(--line); border-radius:10px; padding:16px;" id="triageResult">
+                <div class="badge" style="background:#ef4444; color:#fff; border:none; margin-bottom:8px;">PRIORITY TIER 1: EMERGENCY CODE RED</div>
+                <h4 style="margin-bottom:4px;">Dispatched to Cardiology Acute Unit</h4>
+                <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5;">
+                  Automated triage heuristic reserved ICU Bed #04 and dispatched real-time alert to Duty Cardiologist Dr. Kulkarni. Expected doctor response time: &lt; 90 seconds.
+                </p>
+              </div>
+            </div>
+
+            <div style="margin-top:20px; text-align:right;">
+              <button class="btn btn-primary btn-sm" onclick="closeProjectModal()">Close Simulator</button>
+            </div>
+          `;
+        } else if (key === 'mirror') {
+          modalContent.innerHTML = `
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+              <span style="font-size:2rem;">🪞</span>
+              <div>
+                <h3 style="font-size:1.3rem; margin:0;">Smart Mirror · Skeletal Pose Activity Simulator</h3>
+                <small style="color:var(--text-muted)">Simulated 33-point MediaPipe keypoint detection on edge hardware.</small>
+              </div>
+            </div>
+
+            <div class="simulator-container">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <span>Test Posture State:</span>
+                <div style="display:flex; gap:6px;">
+                  <button class="preset-btn active" onclick="setMirrorPosture('good')">Upright Study</button>
+                  <button class="preset-btn" onclick="setMirrorPosture('slouch')">Slouch Alert</button>
+                  <button class="preset-btn" onclick="setMirrorPosture('active')">Physical Exercise</button>
+                </div>
+              </div>
+
+              <div style="background:#090912; border:1px solid var(--line); border-radius:10px; height:180px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;" id="mirrorCanvasSim">
+                <!-- SVG Stick figure pose -->
+                <svg width="120" height="150" viewBox="0 0 100 120" id="skeletonSvg">
+                  <circle cx="50" cy="20" r="10" stroke="#38bdf8" stroke-width="3" fill="none"/>
+                  <line x1="50" y1="30" x2="50" y2="70" stroke="#38bdf8" stroke-width="3" id="spineLine"/>
+                  <line x1="25" y1="45" x2="75" y2="45" stroke="#38bdf8" stroke-width="3"/>
+                  <line x1="50" y1="70" x2="30" y2="105" stroke="#38bdf8" stroke-width="3"/>
+                  <line x1="50" y1="70" x2="70" y2="105" stroke="#38bdf8" stroke-width="3"/>
+                </svg>
+                <div style="position:absolute; bottom:8px; right:12px; font-family:var(--font-mono); font-size:0.75rem; color:#10b981;" id="mirrorMetrics">
+                  FPS: 30 · Posture: 98% (Healthy)
+                </div>
+              </div>
+              <div style="margin-top:10px; font-size:0.75rem; color:var(--text-sub); display:flex; align-items:center; gap:6px;">
+                <span class="badge badge-green" style="font-size:0.7rem;">Edge Device RAM Only</span>
+                <span>Zero raw video pixels stored or transmitted to external servers.</span>
+              </div>
+            </div>
+
+            <div style="margin-top:20px; text-align:right;">
+              <button class="btn btn-primary btn-sm" onclick="closeProjectModal()">Close Simulator</button>
+            </div>
+          `;
+        } else {
+          openProjectModal(key);
+          return;
+        }
+        modalBackdrop.classList.add('open');
+      };
+
+      window.toggleSimSwitch = function (swId, elId) {
+        playTone(550, 'sine', 0.08);
+        const sw = document.getElementById(swId);
+        const el = document.getElementById(elId);
+        sw.classList.toggle('active');
+        if (el) el.style.display = sw.classList.contains('active') ? 'block' : 'none';
+      };
+
+      window.toggleLostMode = function () {
+        playTone(700, 'triangle', 0.15);
+        const sw = document.getElementById('swLost');
+        const badge = document.getElementById('petStatusBadge');
+        const box = document.getElementById('petCardBox');
+        sw.classList.toggle('active');
+        const isLost = sw.classList.contains('active');
+        if (isLost) {
+          badge.textContent = "🚨 EMERGENCY LOST MODE ACTIVE";
+          badge.className = "badge";
+          badge.style.background = "#ef4444";
+          badge.style.color = "#fff";
+          box.style.borderColor = "#ef4444";
+          showToast("Lost mode activated! Finder GPS prompt simulated.", "🚨");
+        } else {
+          badge.textContent = "Normal Status";
+          badge.className = "badge badge-green";
+          badge.style.background = "";
+          badge.style.color = "";
+          box.style.borderColor = "var(--accent)";
+        }
+      };
+
+      window.runTriageSim = function (type) {
+        playTone(600, 'sine', 0.1);
+        const res = document.getElementById('triageResult');
+        if (type === 'cardiac') {
+          res.innerHTML = `
+            <div class="badge" style="background:#ef4444; color:#fff; border:none; margin-bottom:8px;">PRIORITY TIER 1: EMERGENCY CODE RED</div>
+            <h4 style="margin-bottom:4px;">Dispatched to Cardiology Acute Unit</h4>
+            <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5;">Automated triage heuristic reserved ICU Bed #04 and dispatched real-time alert to Duty Cardiologist Dr. Kulkarni. Expected doctor response: &lt; 90 seconds.</p>
+          `;
+        } else if (type === 'fever') {
+          res.innerHTML = `
+            <div class="badge badge-amber" style="margin-bottom:8px;">PRIORITY TIER 2: GENERAL MEDICINE URGENT</div>
+            <h4 style="margin-bottom:4px;">Assigned to Outpatient Respiratory Clinic</h4>
+            <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5;">Patient routed to Fever Isolation Room 102. Chatbot collected 4-day temperature history and initiated doctor queue token #42.</p>
+          `;
+        } else {
+          res.innerHTML = `
+            <div class="badge badge-green" style="margin-bottom:8px;">PRIORITY TIER 3: SCHEDULED CONSULTATION</div>
+            <h4 style="margin-bottom:4px;">Booked Dental Operatory Slot</h4>
+            <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5;">Non-urgent appointment slotted for tomorrow 11:30 AM with Dr. Ananya. Appointment confirmation and calendar invite dispatched via SMS.</p>
+          `;
+        }
+      };
+
+      window.setMirrorPosture = function (type) {
+        playTone(550, 'sine', 0.08);
+        const metrics = document.getElementById('mirrorMetrics');
+        const spine = document.getElementById('spineLine');
+        if (type === 'good') {
+          metrics.textContent = "FPS: 30 · Posture: 98% (Healthy Upright)";
+          metrics.style.color = "#10b981";
+          spine.setAttribute('x2', '50');
+        } else if (type === 'slouch') {
+          metrics.textContent = "FPS: 30 · Posture: 62% (⚠️ Slouch Warning)";
+          metrics.style.color = "#ef4444";
+          spine.setAttribute('x2', '62');
+        } else {
+          metrics.textContent = "FPS: 30 · Posture: Active Motion (Calorie Tracking)";
+          metrics.style.color = "#38bdf8";
+          spine.setAttribute('x2', '50');
+        }
+      };
+
+      const projectDetails = {
+        pulse: {
+          title: "PULSE+ · Smart Hospital Management System",
+          category: "Full-Stack HealthTech · AI Chatbot",
+          icon: "🏥",
+          summary: "An enterprise-grade hospital management system featuring role-segregated portals (Admin, Doctor, Patient), automated bed and appointment scheduling, and an AI-driven clinical assistance chatbot.",
+          highlights: [
+            "Triple-portal architecture ensuring data isolation between Admin, Doctor, and Patient views.",
+            "Integrated conversational AI assistant for 24/7 symptom triaging and appointment booking.",
+            "Real-time schedule conflict resolution reducing overlapping bookings.",
+            "Strict compliance with patient medical record privacy protocols."
+          ],
+          tech: ["JavaScript", "Node.js / Express", "SQL Database", "AI Natural Language Chatbot", "HTML5/CSS3"]
+        },
+        mainaya: {
+          title: "Mainaya · Campus Appointment Scheduling Platform",
+          category: "Campus Productivity · Realtime Cloud",
+          icon: "📅",
+          summary: "A modern appointment booking system designed for university campuses, bridging students and faculty for smooth consultations without email back-and-forth.",
+          highlights: [
+            "Firebase Authentication supporting campus credentials and role verification.",
+            "Cloud Realtime Database for live slot availability without page refresh.",
+            "Automated slot locking to prevent concurrent double-booking of professors.",
+            "Responsive student dashboard with instant appointment cancellation and rescheduling."
+          ],
+          tech: ["Firebase Auth", "Realtime Database", "JavaScript ES6+", "CSS3 Grid/Flexbox"]
+        },
+        petrack: {
+          title: "PeTrack · Dynamic Pet Identification & QR System",
+          category: "IoT & Pet Safety · Privacy-First Web",
+          icon: "🐾",
+          summary: "A smart pet tracking ecosystem utilizing dynamic QR badges. When a lost pet is found, scanning the badge displays a real-time profile with exactly the contact information the owner has chosen to make public.",
+          highlights: [
+            "Dynamic QR generation linked to owner-managed cloud profiles.",
+            "Granular privacy controls: toggle visibility of phone numbers, addresses, and medical alerts in real time.",
+            "Works without app installation for the finder: any standard smartphone camera opens the pet portal instantly.",
+            "Emergency lost-mode toggle dispatching instant finder instructions."
+          ],
+          tech: ["QR Code Engine", "Cloud Database", "Dynamic Permissions", "Mobile-First Design"]
+        },
+        mirror: {
+          title: "Smart Mirror · Edge Computer Vision Activity Monitor",
+          category: "AI & Computer Vision · Edge Computing",
+          icon: "🪞",
+          summary: "An AI-powered smart mirror leveraging real-time skeletal pose estimation to recognize children's activities (studying, reading, physical exercise) while strictly preserving visual privacy.",
+          highlights: [
+            "Local edge inference using Python, OpenCV, and Google MediaPipe Pose.",
+            "Zero raw image storage: video streams are processed in RAM and only anonymous 33-point skeletal vectors are analyzed.",
+            "Real-time posture and ergonomic evaluation with alert notifications.",
+            "Engineered for low-latency execution on constrained hardware devices."
+          ],
+          tech: ["Python 3.11", "OpenCV", "MediaPipe Pose", "NumPy", "Edge Computing"]
+        }
+      };
+
+      window.closeProjectModal = function () {
+        playTone(450, 'sine', 0.1);
+        modalBackdrop.classList.remove('open');
+      };
+
+      window.closeModalOnBackdrop = function (e) {
+        if (e.target === modalBackdrop) closeProjectModal();
+      };
+
+      // ------------------------------------------------------------------------
+      // Resume Modal Logic
+      // ------------------------------------------------------------------------
+      const resumeBackdrop = document.getElementById('resumeModalBackdrop');
+      window.openResumeModal = function () {
+        playTone(650, 'triangle', 0.15);
+        resumeBackdrop.classList.add('open');
+      };
+      window.closeResumeModal = function () {
+        playTone(450, 'sine', 0.1);
+        resumeBackdrop.classList.remove('open');
+      };
+      window.closeResumeModalOnBackdrop = function (e) {
+        if (e.target === resumeBackdrop) closeResumeModal();
+      };
+
+      // ------------------------------------------------------------------------
+      // FolioForge 2026 Disclosure Modal Logic
+      // ------------------------------------------------------------------------
+      const disclosureBackdrop = document.getElementById('disclosureModalBackdrop');
+      window.openDisclosureModal = function () {
+        playTone(650, 'triangle', 0.15);
+        if (disclosureBackdrop) disclosureBackdrop.classList.add('open');
+      };
+      window.closeDisclosureModal = function () {
+        playTone(450, 'sine', 0.1);
+        if (disclosureBackdrop) disclosureBackdrop.classList.remove('open');
+      };
+      window.closeDisclosureModalOnBackdrop = function (e) {
+        if (e.target === disclosureBackdrop) closeDisclosureModal();
+      };
+
+      // ------------------------------------------------------------------------
+      // Command Palette (Ctrl + K)
+      // ------------------------------------------------------------------------
+      const cmdPalette = document.getElementById('cmdPalette');
+      const cmdInput = document.getElementById('cmdInput');
+      const cmdResults = document.getElementById('cmdResults');
+      const cmdTrigger = document.getElementById('cmdTrigger');
+
+      const cmdItems = [
+        { label: "Who is Shanmai? (Story & Philosophy)", icon: "👤", action: () => location.href = "#who-is-shanmai" },
+        { label: "Ask Shanmai AI (Interactive Chat)", icon: "💬", action: () => location.href = "#chat-ai" },
+        { label: "View 1-Page Resume", icon: "📄", action: () => openResumeModal() },
+        { label: "FolioForge 2026 Tech & AI Disclosure", icon: "🏆", action: () => openDisclosureModal() },
+        { label: "Go to Projects & Simulators", icon: "💻", action: () => location.href = "#projects" },
+        { label: "Go to Experience & Education", icon: "⏳", action: () => location.href = "#experience" },
+        { label: "Go to Technical Skills", icon: "📊", action: () => location.href = "#skills" },
+        { label: "Go to Certifications", icon: "🎖️", action: () => location.href = "#certs" },
+        { label: "Go to Contact & Bengaluru Time", icon: "✉", action: () => location.href = "#contact" },
+        { label: "Test PULSE+ Triage Simulator", icon: "🏥", action: () => openSimulator('pulse') },
+        { label: "Test PeTrack QR Privacy Simulator", icon: "🐾", action: () => openSimulator('petrack') },
+        { label: "Test Smart Mirror Pose Simulator", icon: "🪞", action: () => openSimulator('mirror') },
+        { label: "Copy Email Address", icon: "📋", action: () => window.copyEmail() },
+        { label: "Toggle Dark / Light Theme", icon: "◐", action: () => themeToggle.click() }
+      ];
+
+      function renderCmdResults(query) {
+        const q = (query || '').toLowerCase().trim();
+        const matches = cmdItems.filter(item => item.label.toLowerCase().includes(q));
+        cmdResults.innerHTML = '';
+        if (matches.length === 0) {
+          cmdResults.innerHTML = '<div style="padding:14px; text-align:center; color:var(--text-sub);">No commands found</div>';
+          return;
+        }
+        matches.forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'cmd-item';
+          div.innerHTML = `
+            <div class="cmd-item-left">
+              <span>${item.icon}</span>
+              <span>${item.label}</span>
+            </div>
+            <span class="kbd-key" style="font-size:0.7rem;">Enter</span>
+          `;
+          div.onclick = function () {
+            closeCmdPalette();
+            item.action();
+          };
+          cmdResults.appendChild(div);
+        });
+      }
+
+      function openCmdPalette() {
+        playTone(600, 'sine', 0.1);
+        cmdPalette.classList.add('open');
+        cmdInput.value = '';
+        renderCmdResults('');
+        setTimeout(() => cmdInput.focus(), 50);
+      }
+
+      function closeCmdPalette() {
+        playTone(400, 'sine', 0.08);
+        cmdPalette.classList.remove('open');
+      }
+
+      if (cmdTrigger) cmdTrigger.onclick = openCmdPalette;
+
+      window.closeCmdPaletteOnBackdrop = function (e) {
+        if (e.target === cmdPalette) closeCmdPalette();
+      };
+
+      cmdInput.addEventListener('input', () => renderCmdResults(cmdInput.value));
+
+      window.addEventListener('keydown', function (e) {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+          e.preventDefault();
+          if (cmdPalette.classList.contains('open')) closeCmdPalette();
+          else openCmdPalette();
+        }
+        if (e.key === 'Escape') {
+          if (cmdPalette.classList.contains('open')) closeCmdPalette();
+          if (modalBackdrop.classList.contains('open')) closeProjectModal();
+          if (resumeBackdrop.classList.contains('open')) closeResumeModal();
+          if (disclosureBackdrop && disclosureBackdrop.classList.contains('open')) closeDisclosureModal();
+        }
+      });
+
+      // ------------------------------------------------------------------------
+      // Contact Form Handler
+      // ------------------------------------------------------------------------
+      window.handleContactSubmit = function (e) {
+        e.preventDefault();
+        playTone(720, 'sine', 0.2);
+        const name = document.getElementById('contactName').value;
+        const topic = document.getElementById('contactTopic').value;
+        const msg = document.getElementById('contactMsg').value;
+        
+        triggerConfetti();
+        showToast(`Thank you, ${name}! Generating mailto draft...`, '✨');
+        
+        const mailtoUri = `mailto:shanmaireddy.2006@gmail.com?subject=${encodeURIComponent(`[${topic}] from ${name}`)}&body=${encodeURIComponent(msg)}`;
+        setTimeout(() => {
+          window.location.href = mailtoUri;
+        }, 1200);
+      };
+
+      window.showSkillInfo = function (skill) {
+        playTone(600, 'sine', 0.08);
+        showToast(`Skill: ${skill} · Core Competency`, '💡');
+      };
+
+      // ------------------------------------------------------------------------
+      // Confetti Cannon Particles
+      // ------------------------------------------------------------------------
+      function triggerConfetti() {
+        if (prefersReducedMotion) return;
+        const c = document.getElementById('confettiCanvas');
+        if (!c) return;
+        const ctx = c.getContext('2d');
+        c.width = window.innerWidth;
+        c.height = window.innerHeight;
+        const pieces = [];
+        const colors = ['#8b5cf6', '#38bdf8', '#10b981', '#f59e0b', '#ec4899'];
+        for (let i = 0; i < 90; i++) {
+          pieces.push({
+            x: c.width / 2,
+            y: c.height / 2,
+            vx: (Math.random() - 0.5) * 16,
+            vy: (Math.random() - 0.7) * 16,
+            size: Math.random() * 8 + 4,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            alpha: 1
+          });
+        }
+        function drawConfetti() {
+          ctx.clearRect(0, 0, c.width, c.height);
+          let active = false;
+          pieces.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.vy += 0.35; // gravity
+            p.alpha -= 0.015;
+            if (p.alpha > 0) {
+              active = true;
+              ctx.globalAlpha = p.alpha;
+              ctx.fillStyle = p.color;
+              ctx.fillRect(p.x, p.y, p.size, p.size);
+            }
+          });
+          if (active) requestAnimationFrame(drawConfetti);
+          else ctx.clearRect(0, 0, c.width, c.height);
+        }
+        drawConfetti();
+      }
+
+      // ------------------------------------------------------------------------
+      // Reveal Observers, Counters & Nav Spy
+      // ------------------------------------------------------------------------
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            entry.target.querySelectorAll('.skill-fill').forEach(fill => {
+              fill.style.width = fill.dataset.percent + '%';
+            });
+            entry.target.querySelectorAll('[data-target]').forEach(counter => {
+              animateCounter(counter);
+            });
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+      function animateCounter(counter) {
+        const target = +counter.dataset.target;
+        const suffix = counter.dataset.suffix || '';
+        if (prefersReducedMotion) {
+          counter.textContent = target + suffix;
+          return;
+        }
+        let start = null;
+        const duration = 1400;
+        function step(timestamp) {
+          if (!start) start = timestamp;
+          const progress = Math.min((timestamp - start) / duration, 1);
+          counter.textContent = Math.floor(progress * target) + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+          else counter.textContent = target + suffix;
+        }
+        requestAnimationFrame(step);
+      }
+      document.querySelectorAll('#hero [data-target]').forEach(counter => animateCounter(counter));
+
+      const navLinks = document.querySelectorAll('.nav-links a');
+      const sections = document.querySelectorAll('section[id]');
+      const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navLinks.forEach(link => {
+              link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+            });
+          }
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      sections.forEach(s => navObserver.observe(s));
+
+      // ------------------------------------------------------------------------
+      // Constellation Canvas Animation
+      // ------------------------------------------------------------------------
+      const cv = document.getElementById('cv');
+      if (cv && !prefersReducedMotion) {
+        const ctx = cv.getContext('2d');
+        let particles = [], mouseX = -9999, mouseY = -9999, width = 0, height = 0;
+
+        function resizeCanvas() {
+          width = cv.width = cv.offsetWidth;
+          height = cv.height = cv.offsetHeight;
+          particles = [];
+          const count = Math.min(65, Math.floor(width / 18));
+          for (let i = 0; i < count; i++) {
+            particles.push({
+              x: Math.random() * width,
+              y: Math.random() * height,
+              vx: (Math.random() - 0.5) * 0.45,
+              vy: (Math.random() - 0.5) * 0.45,
+              radius: Math.random() * 1.5 + 1
+            });
+          }
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        cv.parentNode.addEventListener('mousemove', (e) => {
+          const rect = cv.getBoundingClientRect();
+          mouseX = e.clientX - rect.left;
+          mouseY = e.clientY - rect.top;
+        });
+
+        cv.parentNode.addEventListener('mouseleave', () => {
+          mouseX = -9999;
+          mouseY = -9999;
+        });
+
+        function renderConstellation() {
+          ctx.clearRect(0, 0, width, height);
+          const isDark = (root.getAttribute('data-theme') || 'dark') === 'dark';
+          const primaryColor = isDark ? 'rgba(139, 92, 246,' : 'rgba(124, 58, 237,';
+          const cyanColor = isDark ? 'rgba(6, 182, 212,' : 'rgba(2, 132, 199,';
+
+          particles.forEach((p, i) => {
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0 || p.x > width) p.vx *= -1;
+            if (p.y < 0 || p.y > height) p.vy *= -1;
+
+            const dx = p.x - mouseX;
+            const dy = p.y - mouseY;
+            const dist = Math.hypot(dx, dy);
+            if (dist < 110) {
+              p.x += (dx / dist) * 1.5;
+              p.y += (dy / dist) * 1.5;
+            }
+
+            ctx.fillStyle = primaryColor + '0.65)';
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fill();
+
+            for (let j = i + 1; j < particles.length; j++) {
+              const q = particles[j];
+              const d = Math.hypot(p.x - q.x, p.y - q.y);
+              if (d < 125) {
+                const alpha = (1 - d / 125) * 0.28;
+                ctx.strokeStyle = (i % 2 === 0 ? primaryColor : cyanColor) + alpha + ')';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(q.x, q.y);
+                ctx.stroke();
+              }
+            }
+          });
+          requestAnimationFrame(renderConstellation);
+        }
+        renderConstellation();
+      }
+
+    })();
+  </script>
+</body>
+</html>
